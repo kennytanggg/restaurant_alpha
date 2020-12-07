@@ -9,22 +9,25 @@
     --color-primary: #fff;
     --color-secondary: #000;
     --size-text-primary: 1.5rem;
+    --nav-page-padding: 15px;
 }
 
 .navbar-primary {
     background-color: var(--color-secondary);
     height: 45px;
+    position: fixed;
+    width: 100%;
 }
 
 .navbar-primary ul {
     list-style: none;
     display: flex;
-    position: fixed;
+    justify-content: flex-end;
     right: 10vw;
 }
 
 .navbar-primary ul li {
-    padding: 2px 8px;
+    padding-right: var(--nav-page-padding);
 }
 
 .navbar-primary ul li a {
@@ -68,24 +71,38 @@
 
 .navbar-bottom {
     background-color: var(--color-secondary);
-    height: 45px;
+    height: 70px;
+    position: fixed;
+    width: 100%;
+    bottom: 0px;
+    display: flex;
+    justify-content: space-between;
+    /* ToDo */
+    /* border-top: 30px solid; */
 }
 
 .navbar-bottom .navbar-social {
-    position: absolute;
-    left: 0px;
+    padding-left: 30px;
 }
 
-.navbar-bottom ul {
+.navbar-bottom .navbar-social ul {
     list-style: none;
     display: flex;
-    position: absolute;
+    left: 10vw;
+}
+
+.navbar-bottom .navbar-secondary ul {
+    list-style: none;
+    display: flex;
     justify-content: flex-end;
-    right: 10vw;
+    padding-right: 10px;
 }
 
 .navbar-bottom ul li {
-    padding: 2px 8px;
+    padding-top: 10px;
+    padding-right: var(--nav-page-padding);
+    /* background-color: red; */
+    /* display: inline-block; a block element takes up the entire width of its container.  Inline is shrunk inline. */
 }
 
 .navbar-bottom ul li a {
