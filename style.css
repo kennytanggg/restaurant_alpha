@@ -77,9 +77,32 @@
     bottom: 0px;
     display: flex;
     justify-content: space-between;
-    /* ToDo */
-    /* border-top: 30px solid; */
 }
+
+/* Slanted navbar option 1 */
+.navbar-bottom:after {
+    position: absolute;
+    content: '';
+    width: 100%;
+    height: 15px;
+    left: 0;
+    top: -6px;
+    background: black;
+    transform: skewY(-1deg);
+}
+
+/* Slanted navbar option 2 */
+/* .navbar-bottom::after {
+    content: '';
+    position: absolute;
+    border: 15px solid black;
+    border-left-color: transparent;
+    border-top-color: transparent;
+    width: 100%;
+    left: 0px;
+    top: -21px;
+    transform: skewY(-1deg) translateX(-15px) translateY(-1px);
+} */
 
 .navbar-bottom .navbar-social {
     padding-left: 30px;
