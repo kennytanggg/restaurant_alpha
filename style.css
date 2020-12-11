@@ -11,12 +11,12 @@
     --size-text-primary: 1.5rem;
     --nav-page-padding: 15px;
 
-    --img1: url('https://images.unsplash.com/photo-1579871494447-9811cf80d66c?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1500&q=80');
+    /* --img1: url('https://images.unsplash.com/photo-1579871494447-9811cf80d66c?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1500&q=80');
     --img2: url('https://images.unsplash.com/photo-1579584425555-c3ce17fd4351?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=882&q=80');
     --img3: url('https://images.unsplash.com/photo-1562158147-1b1bf404cba1?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=934&q=80');
     --img4: url('https://images.unsplash.com/photo-1599569958048-2051d3f9a3e9?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=934&q=80');
     --img5: url('https://images.unsplash.com/photo-1580827929620-e1a34bc162fd?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1275&q=80');
-    --img6: url('https://images.unsplash.com/photo-1534971525317-ed179568e7f1?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=934&q=80');
+    --img6: url('https://images.unsplash.com/photo-1534971525317-ed179568e7f1?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=934&q=80'); */
 }
 
 .navbar-primary {
@@ -72,12 +72,12 @@
 .content-primary {
     height: 100vh;
     width: 100vw;
-    background-color: purple;
+    /* background-color: purple;
     background-image: var(--img1) center cover cover no-repeat;
     animation-name: img_cycle;
     animation-delay: 0s;
     animation-duration: 30s;
-    animation-timing-function: ease-out;
+    animation-timing-function: ease-out; */
 }
 
 
@@ -158,7 +158,7 @@
     outline: none;
 }
 
-@keyframes img_cycle {
+/* @keyframes img_cycle {
     0% {
         background-image: var(--img1);
     }
@@ -177,4 +177,4 @@
     83.34% {
         background-image: var(--img6);
     }    
-}
+} */
