@@ -20,6 +20,7 @@ arr_imgs.push(img1, img2, img3, img4, img5, img6);
 // get all images and put them in primary content
 var cards = document.createElement('div');
 cards.setAttribute('id', 'cards');
+cards.setAttribute('class', 'cards');
 
 var i = 0;
 arr_imgs.forEach((img) => {
@@ -33,5 +34,8 @@ arr_imgs.forEach((img) => {
     cards.appendChild(slide)
 })
 
-console.log(cards);
+// console.log(cards);
+// console.log(cards.innerHTML);
 
+// content_primary.innerHTML = cards;
+content_primary.appendChild(cards);
