@@ -1,7 +1,6 @@
 console.log('hello hello word');
 const content_primary = document.getElementById('content-primary');
 
-
 // Create array of image paths
 // Route the image path to the current image
 // Add event handlers to change the index manually
@@ -19,23 +18,23 @@ arr_imgs.push(img1, img2, img3, img4, img5, img6);
 
 // get all images and put them in primary content
 var cards = document.createElement('div');
-cards.setAttribute('id', 'cards');
-cards.setAttribute('class', 'cards');
+cards.id = 'cards';
+cards.className = 'cards';
 
 var i = 0;
 arr_imgs.forEach((img) => {
-    var slide = document.createElement('div');
-    slide.innerHTML = `
-        <div class="card" id="card${i}">
-            <img src="${img}" alt="sushi image ${i}">
-        </div>
-    `;
+    var div = document.createElement('div');
+    div.className = "card";
+    div.id = `card-${i}`;
+    div.style.background = `url(${img})`;
+    div.style.backgroundSize = "cover";
+    div.style.backgroundPosition = "center";
+    div.style.backgroundRepeat = "no-repeat";
     i++;
-    cards.appendChild(slide)
+    cards.appendChild(div)
+
+    // <img src="${img}" alt="sushi image ${i}">
 })
 
-// console.log(cards);
-// console.log(cards.innerHTML);
-
-// content_primary.innerHTML = cards;
+console.log(cards);
 content_primary.appendChild(cards);
