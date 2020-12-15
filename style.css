@@ -96,11 +96,10 @@
     width: 100vw;
 }
 
-/* .card img {
-    height: 100%;
-    width: 100%;
-} */
-
+.nav-button-left {
+    background: transparent;
+    position: fixed;
+}
 
 .navbar-bottom {
     background-color: var(--color-secondary);
