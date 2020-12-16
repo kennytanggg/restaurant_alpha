@@ -38,44 +38,31 @@ function createCards() {
     })
 };
 
+// Global card index
+let i = 0;
+function cycleCards() {
+    setInterval(() => {
+        if (i < arr_imgs.length - 1) {
+            var next_card_index = ++i;
+            var next_card = document.getElementById(`card-${next_card_index}`);
+            next_card.scrollIntoView({
+                behavior: "smooth",
+                block: "end",
+                inline: "nearest"
+            });
+        } else if (i == arr_imgs.length - 1) {
+            i = 0;
+            var first_card = document.getElementById('card-0');
+            first_card.scrollIntoView({
+                behavior: "smooth",
+                block: "end",
+                inline: "nearest"
+            });
+        }
+    }, 3500)
+}
+
+
 createCards();
-
-console.log(cards);
 content_primary.appendChild(cards);
-
-// Cycle card index automatically
-// function cycleCards() {
-//     var active_card = document.getElementById('cards')
-//     setTimeout(() => {
-//         if (i != 0) {
-//             i++;
-//         }
-//     }, 3000)
-// }
-
-
-// get position of next element
-// document.documentElement.scrollTo(next-element.left)
-const card2 = document.getElementById('card-2');
-console.log(card2);
-const card2_left = card2.getBoundingClientRect().left;
-const card2_top = card2.getBoundingClientRect().top;
-console.log(card2_left);
-console.log(card2_top);
-
-
-content_primary.documentElement.scrollTo(0, 100);
-// document.documentElement.scrollTo(card2_left, card2_top);
-
-
-
-// Method1 scrollTo(x,y) - move the top left point to the provided coordinates
-
-
-// Method2 scrollBy(x,y) - move the top left point by the prov. coordinates
-// const options = {top: 100px left: 100px behaviour: smooth}
-
-// Method3 element.scrollIntoView()
-
-
-// Method4 scroll-behavior() { behaviour: "smooth", block: "start", inline: "nearest" });
+cycleCards();
