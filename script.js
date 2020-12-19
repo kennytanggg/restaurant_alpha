@@ -65,4 +65,4 @@ function cycleCards() {
 
 createCards();
 content_primary.appendChild(cards);
-cycleCards();
+// cycleCards();
