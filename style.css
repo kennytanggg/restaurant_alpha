@@ -71,11 +71,14 @@
 
 
 .content-primary {
-    height: 100vw;
-    width: 100vh; 
-    transform: rotate(-90deg) translateX(-100vh);
-    transform-origin: top left; 
-    overflow-y: scroll;
+    /* height: 100vw;
+    width: 100vh;  */
+    height: 100vh;
+    width: 100vw;
+    /* background: red; */
+    /* transform: rotate(-90deg) translateX(-100vh); */
+    /* transform-origin: top left;  */
+    /* overflow-y: scroll; */
     overflow-x: hidden;
     position: relative;
 
@@ -83,12 +86,12 @@
 
 .cards {
     display: flex;
-    flex-direction: row;
+    width: 100%;
+    /* flex-direction: row; */
     /* height: 100vh; */
-    width: 600vw;
-    transform: rotate(90deg) translateY(-100vh);
-    transform-origin: top left;
-
+    /* width: 600vw; */
+    /* transform: rotate(90deg) translateY(-100vh); */
+    /* transform-origin: top left; */
 }
 
 .card {

@@ -6,6 +6,7 @@ const content_primary = document.getElementById('content-primary');
 // Add event handlers to change the index manually
 let index = 0;
 
+// KT: I wanted to simulate getting images from somewhere else, not the local machine.
 let arr_imgs = [];
 const img1 = 'https://images.unsplash.com/photo-1579871494447-9811cf80d66c?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1500&q=80';
 const img2 = 'https://images.unsplash.com/photo-1579584425555-c3ce17fd4351?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=882&q=80';
@@ -23,19 +24,33 @@ cards.className = 'cards';
 
 function createCards() {
     var i = 0;
-    arr_imgs.forEach((img) => {
-        var div = document.createElement('div');
-        div.className = "card";
-        div.id = `card-${i}`;
-        div.style.background = `url(${img})`;
-        div.style.backgroundSize = "cover";
-        div.style.backgroundPosition = "center";
-        div.style.backgroundRepeat = "no-repeat";
-        i++;
-        cards.appendChild(div)
+    //#region 
+    // Method: 1 - Simulating getting images from internet? (not from local machine)
+    // arr_imgs.forEach((img) => {
+    //     var div = document.createElement('div');
+    //     div.className = "card";
+    //     div.id = `card-${i}`;
+    //     div.style.background = `url(${img})`;
+    //     div.style.backgroundSize = "cover";
+    //     div.style.backgroundPosition = "center";
+    //     div.style.backgroundRepeat = "no-repeat";
+    //     i++;
+    //     cards.appendChild(div)
+    // });
+    //#endregion
 
-        // <img src="${img}" alt="sushi image ${i}">
-    })
+    //#region 
+    // Method 2: Using i tags.
+    arr_imgs.forEach((img) => {
+        var image = document.createElement('img');
+        image.src = `${img}`;
+        image.style.backgroundSize = "cover";
+        image.style.backgroundPosition = "center";
+        image.style.backgroundRepeat = "no-repeat";
+        i++;
+        cards.appendChild(image);
+    });
+    //#endregion
 };
 
 // Global card index
@@ -66,3 +81,5 @@ function cycleCards() {
 createCards();
 content_primary.appendChild(cards);
 // cycleCards();
+
+console.log(cards);
