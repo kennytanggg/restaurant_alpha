@@ -56,14 +56,18 @@ function createCards() {
     //#endregion
 };
 
-// Global card index -- Should these be var if they're intended to be global?
+// initialization variables
 let index = 0;
-const firstCard = document.getElementById('card-0');
+let prevCard = document.getElementById(`card-${index}`);
+let nextCard = document.getElementById(`card-${index}`);
+let size;
+console.log(size);
+
 function cycleCards() {
     setInterval(() => {
         if (index < arr_imgs.length - 1) {
-            let nextCardIndex = ++index;
-            let nextCard = document.getElementById(`card-${nextCardIndex}`);
+            index = ++index;
+            nextCard = document.getElementById(`card-${index}`);
             nextCard.scrollIntoView({
                 behavior: "smooth",
                 block: "end",
@@ -85,34 +89,52 @@ createCards();
 contentPrimary.appendChild(cards);
 // cycleCards();
 
-
 // Event Listeners
 prevBtn.addEventListener('click', () => {
+    //#region Attempt 1: scrollIntoView
+    // if (index == 0) {
+    //     index = arr_imgs.length - 1;
+
+    //     // prevCard = document.getElementById(`card-${index}`);
+    //     // prevCard.scrollIntoView({
+    //     //     behavior: "smooth",
+    //     //     block: "end",
+    //     //     inline: "nearest"
+    //     // });
+
+    // } else if (index != 0) {
+    //     if (index <= arr_imgs.length - 1) {
+    //         index = --index;
+    //         console.log(index);
+    //         prevCard = document.getElementById(`card-${index}`);
+    //         prevCard.scrollIntoView({
+    //             behavior: "smooth",
+    //             block: "end",
+    //             inline: "nearest"
+    //         });
+    //     }
+    // }
+    //#endregion
+
+    //#region Attempt 2: transform/translate
+    cards.style.transition = 'transform 0.4s ease-in-out';
+    size = document.getElementById(`card-0`).clientWidth;
     if (index == 0) {
-        let prevCardIndex = arr_imgs.length - 1;
-        let prevCard = document.getElementById(`card-${prevCardIndex}`);
-        prevCard.scrollIntoView({
-            behavior: "smooth",
-            block: "end",
-            inline: "nearest"
-        });
+        index = arr_imgs.length - 1;
+        cards.style.transform = 'translateX(' + (-size * (arr_imgs.length - 1)) + 'px)';
     } else if (index != 0) {
-        if (index < arr_imgs.length - 1) { //DO WE NEED THIS?
-            prevCardIndex = arr_imgs.length - 1;
-            prevCard = document.getElementById(`card-${prevCardIndex}`);
-            prevCard.scrollIntoView({
-                behavior: "smooth",
-                block: "end",
-                inline: "nearest"
-            });
+        if (index <= arr_imgs.length - 1) {
+            index = --index;
+            cards.style.transform = 'translateX(' + (-size * index) + 'px)';
         }
     }
+    //#endregion
 });
 
 nextBtn.addEventListener('click', () => {
     if (index < arr_imgs.length - 1) {
-        let nextCardIndex = ++index;
-        let nextCard = document.getElementById(`card-${nextCardIndex}`);
+        index = ++index;
+        nextCard = document.getElementById(`card-${index}`);
         nextCard.scrollIntoView({
             behavior: "smooth",
             block: "end",
