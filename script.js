@@ -1,10 +1,10 @@
-console.log('hello hello word');
-const content_primary = document.getElementById('content-primary');
+const contentPrimary = document.getElementById('content-primary');
+const prevBtn = document.getElementById('prev-button');
+const nextBtn = document.getElementById('next-button');
 
 // Create array of image paths
 // Route the image path to the current image
 // Add event handlers to change the index manually
-let index = 0;
 
 // KT: I wanted to simulate getting images from somewhere else, not the local machine.
 let arr_imgs = [];
@@ -18,7 +18,7 @@ const img6 = 'https://images.unsplash.com/photo-1534971525317-ed179568e7f1?ixid=
 arr_imgs.push(img1, img2, img3, img4, img5, img6);
 
 // get all images and put them in primary content
-var cards = document.createElement('div');
+let cards = document.createElement('div');
 cards.id = 'cards';
 cards.className = 'cards';
 
@@ -43,32 +43,35 @@ function createCards() {
     // Method 2: Using i tags.
     arr_imgs.forEach((img) => {
         var image = document.createElement('img');
+        image.className = 'card';
+        image.id = `card-${i}`;
         image.src = `${img}`;
         image.style.backgroundSize = "cover";
         image.style.backgroundPosition = "center";
         image.style.backgroundRepeat = "no-repeat";
+        image.style.display = "inline-block";
         i++;
         cards.appendChild(image);
     });
     //#endregion
 };
 
-// Global card index
-let i = 0;
+// Global card index -- Should these be var if they're intended to be global?
+let index = 0;
+const firstCard = document.getElementById('card-0');
 function cycleCards() {
     setInterval(() => {
-        if (i < arr_imgs.length - 1) {
-            var next_card_index = ++i;
-            var next_card = document.getElementById(`card-${next_card_index}`);
-            next_card.scrollIntoView({
+        if (index < arr_imgs.length - 1) {
+            let nextCardIndex = ++index;
+            let nextCard = document.getElementById(`card-${nextCardIndex}`);
+            nextCard.scrollIntoView({
                 behavior: "smooth",
                 block: "end",
                 inline: "nearest"
             });
-        } else if (i == arr_imgs.length - 1) {
-            i = 0;
-            var first_card = document.getElementById('card-0');
-            first_card.scrollIntoView({
+        } else if (index == arr_imgs.length - 1) {
+            index = 0;
+            firstCard.scrollIntoView({
                 behavior: "smooth",
                 block: "end",
                 inline: "nearest"
@@ -79,7 +82,48 @@ function cycleCards() {
 
 
 createCards();
-content_primary.appendChild(cards);
+contentPrimary.appendChild(cards);
 // cycleCards();
 
-console.log(cards);
+
+// Event Listeners
+prevBtn.addEventListener('click', () => {
+    if (index == 0) {
+        let prevCardIndex = arr_imgs.length - 1;
+        let prevCard = document.getElementById(`card-${prevCardIndex}`);
+        prevCard.scrollIntoView({
+            behavior: "smooth",
+            block: "end",
+            inline: "nearest"
+        });
+    } else if (index != 0) {
+        if (index < arr_imgs.length - 1) { //DO WE NEED THIS?
+            prevCardIndex = arr_imgs.length - 1;
+            prevCard = document.getElementById(`card-${prevCardIndex}`);
+            prevCard.scrollIntoView({
+                behavior: "smooth",
+                block: "end",
+                inline: "nearest"
+            });
+        }
+    }
+});
+
+nextBtn.addEventListener('click', () => {
+    if (index < arr_imgs.length - 1) {
+        let nextCardIndex = ++index;
+        let nextCard = document.getElementById(`card-${nextCardIndex}`);
+        nextCard.scrollIntoView({
+            behavior: "smooth",
+            block: "end",
+            inline: "nearest"
+        });
+    } else if (index == arr_imgs.length - 1) {
+        index = 0;
+        firstCard.scrollIntoView({
+            behavior: "smooth",
+            block: "end",
+            inline: "nearest"
+        });
+    }
+});
