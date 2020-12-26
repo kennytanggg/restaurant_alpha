@@ -24,7 +24,7 @@
     height: 45px;
     position: fixed;
     width: 100%;
-    z-index: 1;
+    z-index: 10;
 }
 
 .navbar-primary ul {
@@ -92,7 +92,7 @@
     /* width: 600vw; */
     /* transform: rotate(90deg) translateY(-100vh); */
     /* transform-origin: top left; */
-    position: relative;
+    /* position: relative; */
     /* transition: 0.5s ease-in-out; */
 }
 
@@ -122,7 +122,7 @@
 }
 
 .prev-button {
-    position: absolute;
+    position: fixed;
     top: calc(50vh - 35px);
     left: 3%; 
     /* transform: rotate(90deg); */
@@ -134,24 +134,24 @@
 }
 
 .next-button {
+    position: fixed;
     top: calc(50vh - 35px);
     right: 3%;  
     opacity: 0.7;
     /* transform: rotate(90deg); */
     z-index: 10;
-    position: absolute;
     background: transparent;
     color: white;
     cursor: pointer;
 }
 
 .down-button {
+    position: absolute;
     bottom: 10%;
     right: 50%;  
     opacity: 0.7;
     /* transform: rotate(90deg); */
     z-index: 10;
-    position: absolute;
     background: transparent;
     color: white;
     cursor: pointer;
@@ -167,6 +167,7 @@
     bottom: 0px;
     display: flex;
     justify-content: space-between;
+    z-index: 10;
 }
 
 /* Slanted navbar option 1 */

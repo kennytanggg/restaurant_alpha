@@ -122,30 +122,43 @@ prevBtn.addEventListener('click', () => {
     if (index == 0) {
         index = arr_imgs.length - 1;
         cards.style.transform = 'translateX(' + (-size * (arr_imgs.length - 1)) + 'px)';
-    } else if (index != 0) {
-        if (index <= arr_imgs.length - 1) {
-            index = --index;
-            cards.style.transform = 'translateX(' + (-size * index) + 'px)';
-        }
+    } else if (index <= arr_imgs.length - 1) {
+        index = --index;
+        cards.style.transform = 'translateX(' + (-size * index) + 'px)';
     }
     //#endregion
 });
 
 nextBtn.addEventListener('click', () => {
-    if (index < arr_imgs.length - 1) {
-        index = ++index;
-        nextCard = document.getElementById(`card-${index}`);
-        nextCard.scrollIntoView({
-            behavior: "smooth",
-            block: "end",
-            inline: "nearest"
-        });
-    } else if (index == arr_imgs.length - 1) {
+    //#region Attempt 1: scrollIntoView
+    // if (index < arr_imgs.length - 1) {
+    //     index = ++index;
+    //     nextCard = document.getElementById(`card-${index}`);
+    //     nextCard.scrollIntoView({
+    //         behavior: "smooth",
+    //         block: "end",
+    //         inline: "nearest"
+    //     });
+    // } else if (index == arr_imgs.length - 1) {
+    //     index = 0;
+    //     firstCard.scrollIntoView({
+    //         behavior: "smooth",
+    //         block: "end",
+    //         inline: "nearest"
+    //     });
+    // }
+    //#endregion
+
+    //#region Attempt 2: transform/translate
+    cards.style.transition = 'transform 0.4s ease-in-out';
+    size = document.getElementById(`card-0`).clientWidth;
+    if (index == arr_imgs.length - 1) {
         index = 0;
-        firstCard.scrollIntoView({
-            behavior: "smooth",
-            block: "end",
-            inline: "nearest"
-        });
+        cards.style.transform = 'translateX(0px)';
+    } else if (index >= 0) {
+        index = ++index;
+        cards.style.transform = 'translateX(' + (-size * index) + 'px)';
     }
+    //#endregion
+
 });
