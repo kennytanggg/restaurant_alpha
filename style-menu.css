@@ -11,12 +11,6 @@
     --size-text-primary: 1.5rem;
     --nav-page-padding: 15px;
 
-    /* --img1: url('https://images.unsplash.com/photo-1579871494447-9811cf80d66c?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1500&q=80');
-    --img2: url('https://images.unsplash.com/photo-1579584425555-c3ce17fd4351?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=882&q=80');
-    --img3: url('https://images.unsplash.com/photo-1562158147-1b1bf404cba1?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=934&q=80');
-    --img4: url('https://images.unsplash.com/photo-1599569958048-2051d3f9a3e9?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=934&q=80');
-    --img5: url('https://images.unsplash.com/photo-1580827929620-e1a34bc162fd?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1275&q=80');
-    --img6: url('https://images.unsplash.com/photo-1534971525317-ed179568e7f1?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=934&q=80'); */
 }
 
 .navbar-primary {
@@ -84,23 +78,58 @@
 }
 
 .cards {
-    display: flex;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    justify-items: center;
+    align-content: center;
+    gap: 20px 20px;
+    height: 100%;
     width: 100%;
-    /* flex-direction: row; */
-    /* height: 100vh; */
-    /* width: 600vw; */
-    /* transform: rotate(90deg) translateY(-100vh); */
-    /* transform-origin: top left; */
-    /* position: relative; */
-    /* transition: 0.5s ease-in-out; */
+    padding: 60px 60px 110px 60px;
 }
 
 .card {
-    max-height: 100vh;
-    min-width: 100vw;
-    object-fit: cover;
-    /* position: absolute; */
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid black;
 }
+
+.card .one {
+    /* grid-area: card-1; */
+    border: 2px solid black;
+}
+
+.card .two {
+    /* grid-area: card-2; */
+    border: 2px solid black;
+}
+
+.card .three {
+    /* grid-area: card-3; */
+    border: 2px solid black;
+}
+
+.card .four {
+    /* grid-area: card-4; */
+    border: 2px solid black;
+}
+
+.card .five {
+    /* grid-area: card-5; */
+    border: 2px solid black;
+}
+
+.card .six {
+    /* grid-area: card-6; */
+    border: 2px solid black;
+}
+
+
+
 
 .content-primary button {
     border: none;
@@ -156,35 +185,6 @@
     cursor: pointer;
 }
 
-
-.content-secondary {
-    /* height: 100vw;
-    width: 100vh;  */
-    height: 100vh;
-    width: 100vw;
-    /* background: red; */
-    /* transform: rotate(-90deg) translateX(-100vh); */
-    /* transform-origin: top left;  */
-    /* overflow-y: scroll; */
-    overflow: hidden;
-    position: relative;
-    background: #c5c5c5;
-}
-
-.restaurant-projection {
-    display: flex;
-    justify-content: center;
-}
-
-.nav-plugs {
-    background: #e3e3e3;
-    height: 50px;
-}
-
-.nav-plugs a img {
-    height: 40px;
-    width: 40px;
-}
 
 /* Bottom Nav */
 .navbar-bottom {
