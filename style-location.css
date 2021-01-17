@@ -63,6 +63,14 @@
     outline: none;
 }
 
+.restaurant-logo-btn img {
+    height: 70px;
+    width: 70px;
+    position: absolute;
+    top: 15%;
+    left: 2%;
+}
+
 
 .content-primary {
     /* height: 100vw;

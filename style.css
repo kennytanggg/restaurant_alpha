@@ -69,6 +69,14 @@
     outline: none;
 }
 
+.restaurant-logo-btn img {
+    height: 70px;
+    width: 70px;
+    position: absolute;
+    top: 15%;
+    left: 2%;
+}
+
 
 .content-primary {
     /* height: 100vw;
@@ -118,6 +126,14 @@
 .content-primary button:focus {
     scale: scale(0.9);
     opacity: 0.9;
+}
+
+.restaurant-logo-btn img {
+    height: 70px;
+    width: 70px;
+    position: absolute;
+    top: 15%;
+    left: 2%;
 }
 
 .prev-button {

@@ -1,6 +1,8 @@
 const contentPrimary = document.getElementById('content-primary');
 const prevBtn = document.getElementById('prev-button');
 const nextBtn = document.getElementById('next-button');
+const downBtn = document.getElementById('down-button');
+const contentSecondary = document.getElementById('content-secondary');
 
 // Create array of image paths
 // Route the image path to the current image
@@ -160,5 +162,25 @@ nextBtn.addEventListener('click', () => {
         cards.style.transform = 'translateX(' + (-size * index) + 'px)';
     }
     //#endregion
+
+});
+
+downBtn.addEventListener('click', () => {
+    contentSecondary.scrollIntoView({
+        behavior: "smooth",
+        block: "end",
+        inline: "nearest"
+    });
+});
+
+//Make the navigation buttons disappear if the user has scrolled past a certain point
+document.addEventListener('scroll', () => {
+    if (document.documentElement.scrollTop > window.innerWidth / 2) {
+        nextBtn.style.display = 'none';
+        prevBtn.style.display = 'none';
+    } else {
+        nextBtn.style.display = 'inline';
+        prevBtn.style.display = 'inline';
+    }
 
 });

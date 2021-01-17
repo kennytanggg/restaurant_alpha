@@ -22,13 +22,14 @@ const restaurant = fetch(url, {
 
 
 function createReview(review, index) {
+    console.log(review);
     const review_card = document.createElement('div');
-    review_card.className = `card-${index}`;
+    review_card.className = `card ${index}`;
     review_card.innerHTML = `
-        <p>Rating: ${review.rating_text}</p>
-        <p>Likes: ${review.likes}</p>
-        <p>Author: ${review.user.name}</p>
-        <p>Review: ${review.rating_text}</p>
+        <p><u>Author</u>: ${review.user.name}</p>
+        <p><u>Rating</u>: ${review.rating}</p>
+        <p><u>Review</u>: ${review.rating_text}</p>
+        <p><u>Likes</u>: ${review.likes}</p>
         <p>${review.review_time_friendly}</p>
     `;
     return review_card;
