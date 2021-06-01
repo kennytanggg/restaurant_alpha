@@ -10,8 +10,9 @@
 	--color-primary: #fff;
 	--color-secondary: #000;
 	--header-color: #f04e29;
-	--border-color: #dddddd;
-	--border-hover-color: #c0c0c0;
+	--sub-header-color: #ec9292;
+	--border-color: #d3d3d3;
+	--border-hover-color: #b6b6b6;
 	--size-text-primary: 1.5rem;
 	--nav-page-padding: 15px;
 	font-family: 'Nanum Gothic', sans-serif;
@@ -37,6 +38,12 @@
 .header {
 	font-size: 1.3rem;
 	color: var(--header-color);
+	margin: 10px 0 10px 0;
+}
+
+.sub-header {
+	font-size: 1.3rem;
+	color: var(--sub-header-color);
 	margin: 10px 0 10px 0;
 }
 
