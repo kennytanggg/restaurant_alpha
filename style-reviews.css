@@ -2,245 +2,245 @@
 @import url('https://fonts.googleapis.com/css2?family=Jaldi&family=Jost&display=swap');
 
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Jost', 'Courier New', Courier, monospace;
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	font-family: 'Jost', 'Courier New', Courier, monospace;
 
-    --color-primary: #fff;
-    --color-secondary: #000;
-    --size-text-primary: 1.5rem;
-    --nav-page-padding: 15px;
-
+	--color-primary: #fff;
+	--color-secondary: #000;
+	--header-color: #f04e29;
+	--border-color: #dddddd;
+	--border-hover-color: #dddddd;
+	--size-text-primary: 1.5rem;
+	--nav-page-padding: 15px;
 }
 
 .navbar-primary {
-    background-color: var(--color-secondary);
-    height: 45px;
-    position: fixed;
-    width: 100%;
-    z-index: 10;
+	background-color: var(--color-secondary);
+	height: 45px;
+	position: fixed;
+	width: 100%;
+	z-index: 10;
 }
 
 .navbar-primary ul {
-    list-style: none;
-    display: flex;
-    justify-content: flex-end;
-    right: 15vw;
+	list-style: none;
+	display: flex;
+	justify-content: flex-end;
+	right: 15vw;
 }
 
 .navbar-primary ul li {
-    padding-right: var(--nav-page-padding);
+	padding-right: var(--nav-page-padding);
 }
 
 .navbar-primary ul li a {
-    color: #fff;
-    text-decoration: none;
-    font-family: 'Jaldi', Arial, Helvetica, sans-serif;
-    /* text-transform: uppercase; */
-    font-size: var(--size-text-primary);
-    text-align: center;
-    height: 100%;
+	color: #fff;
+	text-decoration: none;
+	font-family: 'Jaldi', Arial, Helvetica, sans-serif;
+	/* text-transform: uppercase; */
+	font-size: var(--size-text-primary);
+	text-align: center;
+	height: 100%;
 }
 
 .navbar-primary ul li a:link {
-    text-decoration: none;
+	text-decoration: none;
 }
 
 .navbar-primary ul li a:hover {
-    border-bottom: 2px solid var(--color-primary);
-    padding-bottom: 1px;
+	border-bottom: 2px solid var(--color-primary);
+	padding-bottom: 1px;
 }
 
 .navbar-primary ul li a:active {
-    font-size: 1.45rem;
+	font-size: 1.45rem;
 }
 
 .navbar-primary ul li a:visited {
-    color: var(--color-primary);
+	color: var(--color-primary);
 }
 
 .navbar-primary ul li a:focus {
-    outline: none;
+	outline: none;
 }
 
 .restaurant-logo-btn img {
-    height: 70px;
-    width: 70px;
-    position: absolute;
-    top: 15%;
-    left: 2%;
+	height: 70px;
+	width: 70px;
+	position: absolute;
+	top: 15%;
+	left: 2%;
 }
 
 .content-primary {
-    /* height: 100vw;
+	/* height: 100vw;
     width: 100vh;  */
-    height: 100vh;
-    width: 100vw;
-    /* background: red; */
-    /* transform: rotate(-90deg) translateX(-100vh); */
-    /* transform-origin: top left;  */
-    /* overflow-y: scroll; */
-    overflow: hidden;
-    position: relative;
-    background: black;
+	height: 100vh;
+	width: 100vw;
+	/* background: red; */
+	/* transform: rotate(-90deg) translateX(-100vh); */
+	/* transform-origin: top left;  */
+	/* overflow-y: scroll; */
+	overflow: hidden;
+	position: relative;
+	background: black;
 }
 
 .cards {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: repeat(2, 1fr);
-    justify-items: center;
-    align-content: center;
-    gap: 20px 20px;
-    height: 100%;
-    width: 100%;
-    padding: 60px 60px 110px 60px;
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	grid-template-rows: repeat(2, 1fr);
+	justify-items: center;
+	align-content: center;
+	gap: 20px 20px;
+	height: 100%;
+	width: 100%;
+	padding: 60px 60px 110px 60px;
 }
 
 .card {
-    height: 100%;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 15px;
-    justify-content: center;
-    border: 2px solid black;
-    border-radius: 25px;
-    background: #cbcbcb;
+	height: 100%;
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 15px;
+	justify-content: center;
+	border: 2px solid black;
+	border-radius: 25px;
+	background: #cbcbcb;
 }
 
-
 .content-primary button {
-    border: none;
+	border: none;
 }
 
 .content-primary button:hover {
-    opacity: 0.9;
+	opacity: 0.9;
 }
 
 .content-primary button:active {
-    transform: scale(0.9);
-    opacity: 0.9;
+	transform: scale(0.9);
+	opacity: 0.9;
 }
 
 .content-primary button:focus {
-    scale: scale(0.9);
-    opacity: 0.9;
+	scale: scale(0.9);
+	opacity: 0.9;
 }
 
 .prev-button {
-    position: fixed;
-    top: calc(50vh - 35px);
-    left: 3%; 
-    /* transform: rotate(90deg); */
-    z-index: 10;
-    background: transparent;
-    color: white;
-    opacity: 0.7;
-    cursor: pointer;
+	position: fixed;
+	top: calc(50vh - 35px);
+	left: 3%;
+	/* transform: rotate(90deg); */
+	z-index: 10;
+	background: transparent;
+	color: white;
+	opacity: 0.7;
+	cursor: pointer;
 }
 
 .next-button {
-    position: fixed;
-    top: calc(50vh - 35px);
-    right: 3%;  
-    opacity: 0.7;
-    /* transform: rotate(90deg); */
-    z-index: 10;
-    background: transparent;
-    color: white;
-    cursor: pointer;
+	position: fixed;
+	top: calc(50vh - 35px);
+	right: 3%;
+	opacity: 0.7;
+	/* transform: rotate(90deg); */
+	z-index: 10;
+	background: transparent;
+	color: white;
+	cursor: pointer;
 }
 
 .down-button {
-    position: absolute;
-    bottom: 10%;
-    right: 50%;  
-    opacity: 0.7;
-    /* transform: rotate(90deg); */
-    z-index: 10;
-    background: transparent;
-    color: white;
-    cursor: pointer;
+	position: absolute;
+	bottom: 10%;
+	right: 50%;
+	opacity: 0.7;
+	/* transform: rotate(90deg); */
+	z-index: 10;
+	background: transparent;
+	color: white;
+	cursor: pointer;
 }
-
 
 /* Bottom Nav */
 .navbar-bottom {
-    background-color: var(--color-secondary);
-    height: 70px;
-    position: fixed;
-    width: 100%;
-    bottom: 0px;
-    display: flex;
-    justify-content: space-between;
-    z-index: 10;
+	background-color: var(--color-secondary);
+	height: 70px;
+	position: fixed;
+	width: 100%;
+	bottom: 0px;
+	display: flex;
+	justify-content: space-between;
+	z-index: 10;
 }
 
 /* Slanted navbar option 1 */
 .navbar-bottom:after {
-    position: absolute;
-    content: '';
-    width: 100%;
-    height: 35px;
-    left: 0;
-    top: -15px;
-    background: black;
-    transform: skewY(-1deg);
-    z-index: -1;
+	position: absolute;
+	content: '';
+	width: 100%;
+	height: 35px;
+	left: 0;
+	top: -15px;
+	background: black;
+	transform: skewY(-1deg);
+	z-index: -1;
 }
 
 .navbar-bottom .navbar-social {
-    padding-left: 30px;
+	padding-left: 30px;
 }
 
 .navbar-bottom .navbar-social ul {
-    list-style: none;
-    display: flex;
-    left: 10vw;
+	list-style: none;
+	display: flex;
+	left: 10vw;
 }
 
 .navbar-bottom .navbar-secondary ul {
-    list-style: none;
-    display: flex;
-    justify-content: flex-end;
-    padding-right: 10px;
+	list-style: none;
+	display: flex;
+	justify-content: flex-end;
+	padding-right: 10px;
 }
 
 .navbar-bottom ul li {
-    padding-top: 10px;
-    padding-right: var(--nav-page-padding);
+	padding-top: 10px;
+	padding-right: var(--nav-page-padding);
 }
 
 .navbar-bottom ul li a {
-    color: #fff;
-    text-decoration: none;
-    font-family: 'Jaldi', Arial, Helvetica, sans-serif;
-    /* text-transform: uppercase; */
-    font-size: var(--size-text-primary);
-    text-align: center;
-    height: 100%;
+	color: #fff;
+	text-decoration: none;
+	font-family: 'Jaldi', Arial, Helvetica, sans-serif;
+	/* text-transform: uppercase; */
+	font-size: var(--size-text-primary);
+	text-align: center;
+	height: 100%;
 }
 
 .navbar-bottom ul li a:link {
-    text-decoration: none;
+	text-decoration: none;
 }
 
 .navbar-bottom ul li a:hover {
-    border-bottom: 2px solid var(--color-primary);
-    padding-bottom: 1px;
+	border-bottom: 2px solid var(--color-primary);
+	padding-bottom: 1px;
 }
 
 .navbar-bottom ul li a:active {
-    font-size: 1.45rem;
+	font-size: 1.45rem;
 }
 
 .navbar-bottom ul li a:visited {
-    color: var(--color-primary);
+	color: var(--color-primary);
 }
 
 .navbar-bottom ul li a:focus {
-    outline: none;
+	outline: none;
 }

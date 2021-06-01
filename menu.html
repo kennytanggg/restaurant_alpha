@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
+        integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA=="
+        crossorigin="anonymous" />
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style-menu.css">
+    <title>Sushi House</title>
+</head>
+
+<body>
+    <nav class="navbar-primary" id="navbar-primary">
+        <div class="restaurant-logo">
+            <a class="restaurant-logo-btn" href="/">
+                <img src="img/ani-logo.png" alt="ani logo">
+            </a>
+        </div>
+        <ul>
+            <li><a href="reviews.html">Reviews</a></li>
+            <li><a href="menu.html">Menu</a></li>
+            <li><a href="#reservations">Reservations</a></li>
+            <li><a href="locations.html">Locations</a></li>
+            <li><a href="store.html">Store</a></li>
+        </ul>
+    </nav>
+
+    <!-- Why are we going with CSS Grid vs. flex and block items? -->
+    <div class="content-primary" id="content-primary">
+        <p class="header">Soups</p>
+        <div class="menu-category soups">
+            <div class="item">
+                <h1 class="name">Ara Jiru</h1>
+                <p class="description">Shinshu miso with bone stock</p>
+                <p class="price">$5.75</p>
+            </div>
+            <div class="item">
+                <h1 class="name">Aka Miso</h1>
+                <p class="description">red <span class="native-name">miso</span> with <span
+                        class="native-name">nameko</span> mushroom</p>
+                <p class="price">$8.75</p>
+            </div>
+        </div>
+        <p class="header">Salads</p>
+        <div class="menu-category salads">
+            <div class="item">
+                <h1 class="name">Kaisou</h1>
+                <p class="description"><span class="native-name">ugo, tokasa</span> and <span
+                        class="native-name">wakame</span> of seaweed with sesame dressing</p>
+                <p class="price">$9.50</p>
+            </div>
+            <div class="item">
+                <h1 class="name">Oshinko</h1>
+                <p class="description">Japanese picked vegetables</p>
+                <p class="price">$9.00</p>
+            </div>
+            <div class="item">
+                <h1 class="name">Salad</h1>
+                <p class="description">greens with drid baby <span class="native-name">jako</span> sardine with
+                    ginger dressing</p>
+                <p class="price">$5.25 - $10.50</p>
+            </div>
+        </div>
+        <p class="header">Omakase</p>
+        <div class="menu-category Omakase">
+            <div class="item">
+                <h1 class="name">Omakase Sashimi 18</h1>
+                <p class="description">selected by the chef - presented with 18 varieties of <span
+                        class="native-name">sushi </span>(no <span class="native-name">sashimi</span>) and a half roll.
+                    For Sushi Yasuda's traditional market price omakase option, please call (212) 972-1001</p>
+                <p class="price">$160.00</p>
+            </div>
+            <div class="item">
+                <h1 class="name">Omakase Sashimi 12</h1>
+                <p class="description">selected by the chef - presented with 12 varieties of <span
+                        class="native-name">sushi</span>(no <span class="native-name">sashimi</span>) and a half roll.
+                    For Sushi Yasuda's traditional market price omakase option, please call (212) 972-1001</p>
+                <p class="price">$100.00</p>
+            </div>
+            <div class="item">
+                <h1 class="name">Omakase Sashimi 5</h1>
+                <p class="description">selected by the chef - presented with 5 varieties of <span
+                        class="native-name">sashimi</span></p>
+                <p class="price">$40.00</p>
+            </div>
+            <div class="item">
+                <h1 class="name">Omakase Sashimi 3</h1>
+                <p class="description">selected by the chef - presented with 3 varieties of <span
+                        class="native-name">sashimi</span></p>
+                <p class="price">$24.00</p>
+            </div>
+            <div class="item">
+                <h1 class="name">Sushi Toku</h1>
+                <p class="description">10 pieces and 1 roll selected by the chef</p>
+                <p class="price">$49.50</p>
+            </div>
+            <div class="item">
+                <h1 class="name">Sashimi Take</h1>
+                <p class="description">select between 3 and 5 varieties for a total of 5 services of <span
+                        class="native-name">sashimi</span></p>
+                <p class="price">$40.00</p>
+            </div>
+            <div class="item">
+                <h1 class="name">Chirashi</h1>
+                <p class="description"><span class="native-name">sashimi</span> on a bed of <span
+                        class="native-name">sushi</span> rice</p>
+                <p class="price">$39.50</p>
+            </div>
+            <div class="item">
+                <h1 class="name">Tekka don Matsu Take</h1>
+                <p class="description">tuna <span class="native-name">sashimi</span> and <span
+                        class="native-name">negitoro</span> on a bed of <span class="native-name">sushi</span> rice</p>
+                <p class="price">$41.00</p>
+            </div>
+            <div class="item">
+                <h1 class="name">Sake don</h1>
+                <p class="description">selection of salmon varietie and <span class="native-name">ikura</span> on a
+                    bed of <span class="native-name">sushi</span> rice</p>
+                <p class="price">$41.00</p>
+            </div>
+        </div>
+        <div class="hand-rolls-specialty">
+            <p class="header">Hand Rolls</p>
+            <div class="menu-category hand-rolls">
+
+            </div>
+            <p class="header">Specialty</p>
+            <div class="menu-category specialty">
+
+            </div>
+        </div>
+
+        <div class="menu-category a-la-carte">
+
+        </div>
+        <div class="menu-category drinks-desserts">
+
+        </div>
+    </div>
+
+
+
+    <div class="navbar-bottom" id="navbar-bottom">
+        <nav class="navbar-social" id="navbar-social">
+            <ul>
+                <li><a href="#"><i class="fab fa-facebook"></i></a></li>
+                <li><a href="#"><i class="fab fa-instagram"></i></a></li>
+                <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+                <li><a href="#"><i class="fab fa-linkedin"></i></a></li>
+                <li><a href="#"><i class="fas fa-envelope"></i></a></li>
+            </ul>
+        </nav>
+        <nav class="navbar-secondary" id="navbar-secondary">
+            <ul>
+                <li><a href="#about">About</a></li>
+                <li><a href="#press">Press</a></li>
+                <li><a href="#careers">Careers</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </div>
+
+    <script src="script-menu.js"></script>
+</body>
+
+</html>

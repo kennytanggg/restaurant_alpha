@@ -1,0 +1,75 @@
+/* @import url('https://fonts.googleapis.com/css2?family=Jost&display=swap'); */
+@import url('https://fonts.googleapis.com/css2?family=Jaldi&family=Jost&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap');
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+
+	--color-primary: #fff;
+	--color-secondary: #000;
+	--header-color: #f04e29;
+	--border-color: #dddddd;
+	--border-hover-color: #c0c0c0;
+	--size-text-primary: 1.5rem;
+	--nav-page-padding: 15px;
+	font-family: 'Nanum Gothic', sans-serif;
+}
+
+.content-primary {
+	height: 100%;
+	max-width: 100%;
+	position: absolute;
+	top: 10%;
+	left: 12.5%;
+	overflow: auto;
+	overflow-x: hidden;
+}
+
+.menu-category {
+	display: grid;
+	/* width: 100%; */
+	grid-template-columns: repeat(2, 1fr);
+	max-width: 80%;
+}
+
+.header {
+	font-size: 1.3rem;
+	color: var(--header-color);
+	margin: 10px 0 10px 0;
+}
+
+.item {
+	height: 150px;
+	border: var(--border-color) 1px solid;
+	border-radius: 8px;
+	padding: 1.3rem;
+	position: relative;
+	margin-top: 5px;
+	margin-bottom: 5px;
+	margin-right: 10px;
+}
+
+.item:hover {
+	border: 1px solid var(--border-hover-color);
+}
+
+.item .name {
+	font-size: 0.8rem;
+}
+
+.item .description {
+	margin-top: 5px;
+	font-size: 0.8rem;
+}
+
+.item .price {
+	position: absolute;
+	font-size: 0.7rem;
+	bottom: 5%;
+}
+
+.native-name {
+	font-style: italic;
+}
