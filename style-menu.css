@@ -12,8 +12,10 @@
 	--header-color: #f04e29;
 	--sub-header-color: #ec9292;
 	--border-color: #d3d3d3;
-	--border-hover-color: #b6b6b6;
-	--size-text-primary: 1.5rem;
+	--border-hover-color: #707070;
+	--size-text-primary: 1.3rem;
+	--size-text-secondary: 0.8rem;
+	--size-text-price: 0.75rem;
 	--nav-page-padding: 15px;
 	font-family: 'Nanum Gothic', sans-serif;
 }
@@ -24,8 +26,10 @@
 	position: absolute;
 	top: 10%;
 	left: 12.5%;
-	overflow: auto;
+	/* overflow: auto; */
+	/* TODO: WHY DOES IT FEEL LIKE THERE'S 2 SCROLLBARS */
 	overflow-x: hidden;
+	overflow-y: visible;
 }
 
 .menu-category {
@@ -36,13 +40,13 @@
 }
 
 .header {
-	font-size: 1.3rem;
+	font-size: var(--size-text-primary);
 	color: var(--header-color);
 	margin: 10px 0 10px 0;
 }
 
 .sub-header {
-	font-size: 1.3rem;
+	font-size: var(--size-text-primary);
 	color: var(--sub-header-color);
 	margin: 10px 0 10px 0;
 }
@@ -63,20 +67,61 @@
 }
 
 .item .name {
-	font-size: 0.8rem;
+	font-size: var(--size-text-secondary);
 }
 
 .item .description {
 	margin-top: 5px;
-	font-size: 0.8rem;
+	font-size: var(--size-text-secondary);
 }
 
 .item .price {
 	position: absolute;
-	font-size: 0.7rem;
+	font-size: var(--size-text-price);
 	bottom: 5%;
 }
 
 .native-name {
 	font-style: italic;
+}
+
+.menu-category.hand-rolls {
+	display: block;
+}
+
+.hand-rolls-container {
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+}
+
+.hand-roll-set {
+	border: var(--border-color) 1px solid;
+	border-radius: 8px;
+	padding: 1.3rem;
+	margin-right: 10px;
+	margin-bottom: 10px;
+}
+
+.hand-roll-set:hover {
+	border: 1px solid var(--border-hover-color);
+}
+
+.hand-roll-header {
+	display: flex;
+	justify-content: space-between;
+	margin-bottom: 5px;
+	padding-bottom: 5px;
+	border-bottom: 1px solid var(--border-color);
+}
+
+.hand-roll-header h1 {
+	font-size: var(--size-text-secondary);
+}
+
+.hand-roll-header .price {
+	font-size: var(--size-text-price);
+}
+
+.roll-item {
+	font-size: var(--size-text-secondary);
 }
