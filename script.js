@@ -3,6 +3,24 @@ const prevBtn = document.getElementById('prev-button');
 const nextBtn = document.getElementById('next-button');
 const downBtn = document.getElementById('down-button');
 const contentSecondary = document.getElementById('content-secondary');
+const navbarPrimary = document.getElementById('navbar-primary');
+const orderBtn = navbarPrimary.lastElementChild.lastElementChild.lastElementChild;
+const closeBtn = document.querySelector('.close-btn');
+const cartOverlay = document.querySelector('.cart-overlay');
+const cartContainter = document.querySelector('.cart');
+
+console.log(orderBtn);
+
+orderBtn.addEventListener('click', () => {
+	console.log('hello coconut');
+	cartOverlay.style.visibility = 'visible';
+	cartContainter.style.visibility = 'visible';
+});
+
+closeBtn.addEventListener('click', () => {
+	cartOverlay.style.visibility = 'hidden';
+	cartContainter.style.visibility = 'hidden';
+});
 
 // Create array of image paths
 // Route the image path to the current image

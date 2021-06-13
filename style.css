@@ -8,9 +8,24 @@
 
 	--color-primary: #fff;
 	--color-secondary: #000;
+	--cart-color-foreground: #404040;
+	/* --cart-color-background: #707070; */
+	--cart-color-background: #fff;
+	--cart-hover-color: #707070;
 	--background-color-secondary: #d2d2d2;
+	--clearCartColor: #f04e29;
+	--removeItemColor: #ec9292;
 	--size-text-primary: 1.5rem;
 	--nav-page-padding: 15px;
+}
+
+button {
+	background: transparent;
+	border: none;
+}
+
+button:hover {
+	cursor: pointer;
 }
 
 .navbar-primary {
@@ -272,65 +287,133 @@
 }
 
 /* Cart */
-.cart-container {
+.cart-overlay {
+	position: fixed;
+	top: 0;
+	right: 0;
+	background: transparent;
+	transition: ease-in;
+	background: var(--removeItemColor);
+	width: 100%;
+	height: 100%;
+	z-index: 11;
+	visibility: hidden;
+}
+
+.cart {
 	position: absolute;
 	top: 0;
 	right: 0%;
 	min-width: 400px;
 	max-width: 400px;
+	max-height: 100%;
 	height: 100vh;
-	background: red;
+	background: var(--cart-color-background);
 	/* transform: translateX(-400px); */
-	display: block;
-	z-index: 15;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	/* z-index: 15; */
+	font-family: 'Jaldi', Arial, Helvetica, sans-serif;
+	border: 3px solid black;
+	/* visibility: hidden; */
 }
 
-.cart-container .close-btn {
+.cart h2 {
+	margin: 5px 0;
+	font-size: 1.9rem;
+	color: var(--cart-color-foreground);
+	border-bottom: 1px solid var(--cart-color-foreground);
+	width: 92%;
+	text-align: center;
+}
+
+.cart .close-btn {
 	background: transparent;
 	border: none;
+	position: absolute;
+	color: var(--cart-color-foreground);
+	top: 15px;
+	right: 15px;
 }
 
-.cart-container .close-btn:hover {
-	color: white;
+.cart .close-btn:hover {
+	color: var(--cart-hover-color);
 	cursor: pointer;
 }
 
 .cart-content {
 	display: block;
-	background: white;
-	color: purple;
+	color: var(--cart-color-foreground);
 	z-index: 15;
 }
 
 .item-container {
 	display: grid;
-	grid-template-columns: 1fr 3fr 1fr;
-	padding: 5px 0px 0px 0px;
+	grid-template-columns: 1fr 5fr 1fr;
+	/* height: 80px; */
 }
 
 .item-quantity,
+.item-description,
 .item-price {
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
+	padding: 7px 0;
+	font-size: 1.3rem;
+	/* border: 1px solid purple; */
 }
 
+/* KT: Not a fan of this */
 .item-description {
-	display: flex;
-	flex-direction: column;
+	min-width: 240px;
+	max-width: 270px;
 }
 
-/* .item-price {
-	text-align: right;
-} */
+.increment-item-btn,
+.decrement-item-btn {
+	color: var(--cart-color-foreground);
+}
+
+.increment-item-btn:hover,
+.decrement-item-btn:hover {
+	color: var(--cart-hover-color);
+}
+
+.remove-item-btn {
+	background: var(--removeItemColor);
+	font-size: 0.9rem;
+	height: 24px;
+	width: 150px;
+	border: 1.3px solid var(--clearCartColor);
+	border-radius: 3px;
+	padding: 0px 5px;
+}
+
+.remove-item-btn:hover {
+	border-color: var(--color-primary);
+}
 
 /* Create an overlay for the main content when the cart is active */
-button {
-	background: transparent;
-	border: none;
+.active {
+	background: purple;
+	z-index: 20;
 }
 
-button:hover {
-	cursor: pointer;
+.clear-all-btn {
+	height: 35px;
+	width: 40%;
+	background: var(--clearCartColor);
+	border: 1.3px solid var(--clearCartColor);
+	border-radius: 5px;
+	margin-top: 20px;
+	font-size: 1.1rem;
+	color: var(--color-primary);
+	border: 1px solid var(--cart-color-foreground);
+}
+
+.clear-all-btn:hover {
+	border-color: var(--color-primary);
 }

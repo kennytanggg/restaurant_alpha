@@ -71,50 +71,57 @@
     </div>
 
     <!-- Cart -->
-    <div class="cart-container">
-        <h2>Cart</h2>
-        <button class="close-btn">
-            <i class="far fa-times-circle"></i>
-        </button>
-        <div class="cart-content">
-            <!-- Cart Item -->
-            <article class="item-container">
-                <!-- TODO do i need all these item classes? -->
-                <div class="item-quantity">
-                    <button class="increment-item-btn">
-                        <i class="fas fa-chevron-up"></i>
-                    </button>
-                    <p>1</p>
-                    <button class="decrement-item-btn">
-                        <i class="fas fa-chevron-down"></i>
-                    </button>
-                </div>
-                <div class="item-description">
-                    <p class="item-name">Ara Jiru</p>
-                    <button class="remove-item-btn">Remove</button>
-                </div>
-                <div class="item-price">
-                    <p>$5.75</p>
-                </div>
-            </article>
-            <article class="item-container">
-                <!-- TODO do i need all these item classes? -->
-                <div class="item-quantity">
-                    <i class="fas fa-chevron-up"></i>
-                    <p>1</p>
-                    <i class="fas fa-chevron-down"></i>
-                </div>
-                <div class="item-description">
-                    <p class="item-name">Ara INSERT REALLY LONG NAME HERE Jiru</p>
-                    <button class="remove-item-btn">Remove</button>
-                </div>
-                <div class="item-price">
-                    <p>$5.75</p>
-                </div>
-            </article>
-            <!-- End of Cart Item -->
+    <div class="cart-overlay">
+        <div class="cart">
+            <h2>Cart</h2>
+            <button class="close-btn">
+                <i class="far fa-window-close fa-2x"></i>
+            </button>
+            <div class="cart-content">
+                <!-- Cart Item -->
+                <article class="item-container">
+                    <!-- TODO do i need all these item classes? -->
+                    <div class="item-quantity">
+                        <button class="increment-item-btn">
+                            <i class="fas fa-chevron-up"></i>
+                        </button>
+                        <p>1</p>
+                        <button class="decrement-item-btn">
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                    </div>
+                    <div class="item-description">
+                        <p class="item-name">Ara Jiru</p>
+                        <button class="remove-item-btn">Remove From Cart</button>
+                    </div>
+                    <div class="item-price">
+                        <p>$5.75</p>
+                    </div>
+                </article>
+                <article class="item-container">
+                    <!-- TODO do i need all these item classes? -->
+                    <div class="item-quantity">
+                        <button class="increment-item-btn">
+                            <i class="fas fa-chevron-up"></i>
+                        </button>
+                        <p>1</p>
+                        <button class="decrement-item-btn">
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                    </div>
+                    <div class="item-description">
+                        <p class="item-name">Amaterasu Jiru</p>
+                        <button class="remove-item-btn">Remove From Cart</button>
+                    </div>
+                    <div class="item-price">
+                        <p>$5.75</p>
+                    </div>
+                </article>
+                <!-- End of Cart Item -->
+            </div>
+            <button class="clear-all-btn">Clear Cart</button>
         </div>
-        <button class="clear-all-btn">Clear Cart</button>
+        <!-- End of Cart -->
     </div>
 
 
