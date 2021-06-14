@@ -9,10 +9,9 @@ const closeBtn = document.querySelector('.close-btn');
 const cartOverlay = document.querySelector('.cart-overlay');
 const cartContainter = document.querySelector('.cart');
 
-console.log(orderBtn);
+let cart = [];
 
 orderBtn.addEventListener('click', () => {
-	console.log('hello coconut');
 	cartOverlay.style.visibility = 'visible';
 	cartContainter.style.visibility = 'visible';
 });
@@ -21,10 +20,6 @@ closeBtn.addEventListener('click', () => {
 	cartOverlay.style.visibility = 'hidden';
 	cartContainter.style.visibility = 'hidden';
 });
-
-// Create array of image paths
-// Route the image path to the current image
-// Add event handlers to change the index manually
 
 // KT: I wanted to simulate getting images from somewhere else, not the local machine.
 let arr_imgs = [];
@@ -88,7 +83,6 @@ let index = 0;
 let prevCard = document.getElementById(`card-${index}`);
 let nextCard = document.getElementById(`card-${index}`);
 let size;
-console.log(size);
 
 function cycleCards() {
 	setInterval(() => {
@@ -206,3 +200,65 @@ document.addEventListener('scroll', () => {
 		prevBtn.style.display = 'inline';
 	}
 });
+
+// Get the Data
+class Order {
+	async getItems() {
+		// You're using the fetch method to access a static file
+		try {
+			let result = await fetch('order.json');
+			let data = await result.json();
+			let order = data.items;
+			order = order.map((item) => {
+				// DESCTRUCTURING
+				const { id, name, description, price, quantity } = item;
+				return { id, name, description, price, quantity };
+			});
+			return order;
+		} catch (err) {
+			console.log(err);
+		}
+	}
+}
+
+// Display / Render it to the user
+class UI {
+	displayItems() {}
+
+	getBagButtons() {}
+
+	setCartValues(cart) {}
+}
+
+// Allow user to modify the data
+class Cart {
+	addItem(item) {}
+	removeItem(id) {}
+	incrementItem(item) {}
+	decrementItem(item) {}
+}
+
+// Persist the data
+class Storage {
+	saveCart() {
+		localStorage.setItem('cart', cart);
+	}
+	getCart() {
+		cart = localStorage.getItem('cart');
+	}
+	clearCart() {
+		localStorage.removeItem('cart');
+	}
+}
+
+//
+document.addEventListener('DOMContentLoaded', () => {
+	const ui = new UI();
+	const order = new Order();
+
+	// When do i have access to the elements on the page, now, or later?
+	cart = order.getItems().then((data) => console.log(data));
+
+	// Now to RENDER THE DATA
+});
+// get all products

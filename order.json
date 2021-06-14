@@ -1,0 +1,39 @@
+{
+	"items": [
+		{
+			"id": 1,
+			"name": "someName1",
+			"description": "someDescription1",
+			"price": 1.75,
+			"quantity": 1
+		},
+		{
+			"id": 2,
+			"name": "someName2",
+			"description": "someDescription2",
+			"price": 2.75,
+			"quantity": 1
+		},
+		{
+			"id": 3,
+			"name": "someName3",
+			"description": "someDescription3",
+			"price": 3.75,
+			"quantity": 1
+		},
+		{
+			"id": 4,
+			"name": "someName4",
+			"description": "someDescription4",
+			"price": 4.75,
+			"quantity": 1
+		},
+		{
+			"id": 5,
+			"name": "someName5",
+			"description": "someDescription5",
+			"price": 5.75,
+			"quantity": 1
+		}
+	]
+}
