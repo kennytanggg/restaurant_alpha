@@ -2,37 +2,201 @@
 	"items": [
 		{
 			"id": 1,
-			"name": "someName1",
-			"description": "someDescription1",
-			"price": 1.75,
+			"name": "Ara Jiru",
+			"description": "Shinshu miso with bone stock",
+			"price": 5.75,
+			"category": "Soups",
 			"quantity": 1
 		},
 		{
 			"id": 2,
-			"name": "someName2",
-			"description": "someDescription2",
-			"price": 2.75,
+			"name": "Aka Miso",
+			"description": "red miso with nameko mushroom",
+			"price": 8.75,
+			"category": "Soups",
 			"quantity": 1
 		},
 		{
 			"id": 3,
-			"name": "someName3",
-			"description": "someDescription3",
-			"price": 3.75,
+			"name": "Kaisou",
+			"description": "ugo, tokasa and wakame of seaweed with sesame dressing",
+			"price": 9.5,
+			"category": "Salads",
 			"quantity": 1
 		},
 		{
 			"id": 4,
-			"name": "someName4",
-			"description": "someDescription4",
-			"price": 4.75,
+			"name": "Oshinko",
+			"description": "Japanese picked vegetables",
+			"category": "Salads",
+			"price": 9.0,
 			"quantity": 1
 		},
 		{
 			"id": 5,
-			"name": "someName5",
-			"description": "someDescription5",
-			"price": 5.75,
+			"name": "Salad",
+			"description": "greens with drid baby jako sardine with ginger dressing",
+			"category": "Salads",
+			"price": 5.25,
+			"quantity": 1
+		},
+		{
+			"id": 6,
+			"name": "Aka Miso",
+			"description": "red miso with nameko mushroom",
+			"price": 8.75,
+			"category": "Omakase",
+			"quantity": 1
+		},
+		{
+			"id": 7,
+			"name": "Kaisou",
+			"description": "ugo, tokasa and wakame of seaweed with sesame dressing",
+			"price": 9.5,
+			"category": "Omakase",
+			"quantity": 1
+		},
+		{
+			"id": 8,
+			"name": "Omakase Sashimi 18",
+			"description": "selected by the chef - presented with 18 varieties of sushi (no sashimi) and a half roll. For Sushi Yasuo's traditional market price omakase option, please call (555) 555-5555",
+			"price": 160.0,
+			"category": "Omakase",
+			"quantity": 1
+		},
+		{
+			"id": 9,
+			"name": "Omakase Sashimi 12",
+			"description": "selected by the chef - presented with 12 varieties of sushi (no sashimi) and a half roll. For Sushi Yasuo's traditional market price omakase option, please call (555) 555-5555",
+			"category": "Omakase",
+			"price": 100.0,
+			"quantity": 1
+		},
+		{
+			"id": 10,
+			"name": "Omakase Sashimi 5",
+			"description": "selected by the chef - presented with 5 varieties of sashimi",
+			"price": 40.0,
+			"category": "Omakase",
+			"quantity": 1
+		},
+		{
+			"id": 11,
+			"name": "Omakase Sashimi 3",
+			"description": "selected by the chef - presented with 3 varieties of sashimi",
+			"price": 24.0,
+			"category": "Omakase",
+			"quantity": 1
+		},
+		{
+			"id": 12,
+			"name": "Sushi Toku",
+			"description": "10 pieces and 1 roll selected by the chef",
+			"price": 49.5,
+			"category": "Omakase",
+			"quantity": 1
+		},
+		{
+			"id": 13,
+			"name": "Sashimi Take",
+			"description": "select between 3 and 5 varieties for a total of 5 services of sashimi",
+			"price": 40.0,
+			"quantity": 1
+		},
+		{
+			"id": 14,
+			"name": "Chirashi",
+			"description": "sashimi on a bed of sushi rice",
+			"price": 39.5,
+			"category": "Omakase",
+			"quantity": 1
+		},
+		{
+			"id": 15,
+			"name": "Tekka don Matsu Take",
+			"description": "tuna sashimi and negitoro on a bed of sushi rice",
+			"price": 41.0,
+			"category": "Omakase",
+			"quantity": 1
+		},
+		{
+			"id": 16,
+			"name": "Sake don",
+			"description": "selection of salmon varietie and ikura on a bed of sushi rice",
+			"price": 41.0,
+			"category": "Omakase",
+			"quantity": 1
+		},
+		{
+			"id": 17,
+			"name": "3-Piece Hand Roll Set",
+			"description": "Salmon Bay Scallop Crab",
+			"price": 15.0,
+			"category": "Hand Rolls",
+			"quantity": 1
+		},
+		{
+			"id": 18,
+			"name": "4-Piece Hand Roll Set",
+			"description": "Toro Salmon Bay Scallop Crab",
+			"price": 18.0,
+			"category": "Hand Rolls",
+			"quantity": 1
+		},
+		{
+			"id": 19,
+			"name": "5-Piece Hand Roll Set",
+			"description": "Toro Yellowtail Bay Scallop Crab Lobster",
+			"price": 24.0,
+			"category": "Hand Rolls",
+			"quantity": 1
+		},
+		{
+			"id": 20,
+			"name": "6-Piece Hand Roll Set",
+			"description": "Toro Yellowtail Salmon Bay Scallop Crab Lobster",
+			"price": 29.0,
+			"category": "Hand Rolls",
+			"quantity": 1
+		},
+		{
+			"id": 21,
+			"name": "Blue Fin Tuna - Toro (Spain)",
+			"description": "Sushi by the piece or serving of Sashimi",
+			"price": 6.5,
+			"category": "a la carte",
+			"quantity": 1
+		},
+		{
+			"id": 22,
+			"name": "Blue Fin Fatty Tuna - Toro (Spain)",
+			"description": "Sushi by the piece or serving of Sashimi",
+			"price": 15.0,
+			"category": "a la carte",
+			"quantity": 1
+		},
+		{
+			"id": 23,
+			"name": "Hamachi (Kumamoto)",
+			"description": "Sushi by the piece or serving of Sashimi",
+			"price": 7.0,
+			"category": "a la carte",
+			"quantity": 1
+		},
+		{
+			"id": 24,
+			"name": "Striped Jack – Shimaaji (Oita)",
+			"description": "Sushi by the piece or serving of Sashimi",
+			"price": 8.0,
+			"category": "a la carte",
+			"quantity": 1
+		},
+		{
+			"id": 25,
+			"name": "Greater Amberjack – Kanpachi (Kagoshima)",
+			"description": "Sushi by the piece or serving of Sashimi",
+			"price": 8.75,
+			"category": "a la carte",
 			"quantity": 1
 		}
 	]

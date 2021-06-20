@@ -223,11 +223,31 @@ class Order {
 
 // Display / Render it to the user
 class UI {
-	displayItems() {}
+	// add to cart
+	displayItems() {
+		// KT: Break this up into different categories
+		cart.forEach((item) => {
+			const menu_item = `<div class="menu-category soups">
+            <div class="item">
+                <h1 class="name">Ara Jiru</h1>
+                <p class="description">Shinshu miso with bone stock</p>
+                <p class="price">$5.75</p>
+            </div>
+            <div class="item">
+                <h1 class="name">Aka Miso</h1>
+                <p class="description">red <span class="native-name">miso</span> with <span
+                        class="native-name">nameko</span> mushroom</p>
+                <p class="price">$8.75</p>
+            </div>
+        </div>`;
+		});
+	}
 
 	getBagButtons() {}
-
+	showCart(cart) {}
 	setCartValues(cart) {}
+	populateCart(cart) {}
+	setupApp() {}
 }
 
 // Allow user to modify the data
