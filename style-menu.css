@@ -43,6 +43,7 @@
 	font-size: var(--size-text-primary);
 	color: var(--header-color);
 	margin: 10px 0 10px 0;
+	display: inline-block;
 }
 
 .sub-header {

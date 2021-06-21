@@ -101,6 +101,7 @@
 			"name": "Sashimi Take",
 			"description": "select between 3 and 5 varieties for a total of 5 services of sashimi",
 			"price": 40.0,
+			"category": "Omakase",
 			"quantity": 1
 		},
 		{

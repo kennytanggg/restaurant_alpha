@@ -211,8 +211,10 @@ class Order {
 			let order = data.items;
 			order = order.map((item) => {
 				// DESCTRUCTURING
-				const { id, name, description, price, quantity } = item;
-				return { id, name, description, price, quantity };
+				// const { id, name, description, price, quantity, category } = item;
+				const { ...properties } = item;
+				// return { id, name, description, price, quantity, category };
+				return { ...properties };
 			});
 			return order;
 		} catch (err) {
@@ -223,24 +225,31 @@ class Order {
 
 // Display / Render it to the user
 class UI {
-	// add to cart
-	displayItems() {
+	// add to cart - KT: is this adding to cart?  Or rendering the item on the page?
+	displayItems(cart) {
 		// KT: Break this up into different categories
 		cart.forEach((item) => {
-			const menu_item = `<div class="menu-category soups">
-            <div class="item">
-                <h1 class="name">Ara Jiru</h1>
-                <p class="description">Shinshu miso with bone stock</p>
-                <p class="price">$5.75</p>
-            </div>
-            <div class="item">
-                <h1 class="name">Aka Miso</h1>
-                <p class="description">red <span class="native-name">miso</span> with <span
-                        class="native-name">nameko</span> mushroom</p>
-                <p class="price">$8.75</p>
-            </div>
-        </div>`;
+			let { category, name } = item;
+			if (category == 'Soups' || category == 'Salads') {
+				console.log('you have a soup or salad');
+				this.displaySoupOrSalad(item);
+			} else if (category == 'Omakase') {
+				console.log('you have Omakase');
+			} else if (category == 'a la carte') {
+				console.log('youve ordered a la carte');
+			}
 		});
+	}
+
+	displaySoupOrSalad(item) {
+		// should i use destructuring here?
+		const menu_item = `<div class="menu-category ${item.category.toLowerCase()}">
+			    <div class="item">
+			        <h1 class="name">${item.name}</h1>
+			        <p class="description">${item.description}</p>
+			        <p class="price">$${item.price}</p>
+			    </div>
+			</div>`;
 	}
 
 	getBagButtons() {}
@@ -277,7 +286,10 @@ document.addEventListener('DOMContentLoaded', () => {
 	const order = new Order();
 
 	// When do i have access to the elements on the page, now, or later?
-	cart = order.getItems().then((data) => console.log(data));
+	cart = order.getItems().then((data) => {
+		console.log(data);
+		ui.displayItems(data);
+	});
 
 	// Now to RENDER THE DATA
 });
