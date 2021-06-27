@@ -40,7 +40,6 @@ class UI {
 		let menu_categories = [];
 		// iterate through each category, create a header and a wrapper div
 		cart.forEach(({ category }) => {
-			console.log(category);
 			if (!menu_categories.includes(category)) {
 				menu_categories.push(category);
 				const menu_category_header = document.createElement('p');
@@ -69,21 +68,30 @@ class UI {
 
 	displaySoupOrSalad(item) {
 		// should i use destructuring here?
-		// console.log(contentPrimary.innerHTML);
-		console.log(item);
-		console.log(item.category);
+		// console.log(item);
 
-		// KT: TO FIX
-		const menu_category = document.querySelectorAll(`menu-category ${item.category.toLowerCase()}`);
-		console.log(menu_category);
+		// KT: Why doesn't querySelector & appendChild work when getElementsByClassName & innerText does?
+		// Why add the menu items 'dynamically' through JS?  Why is this intermediate step necessary before creating the cart?
+		// All the additional styling (spans, emphasizing elements which are not english and native elements, is kind of tedious, but necessary)
+		// The 'dynamic styles' are added within the HTML file is done using JS - seems too complicated for a menu?  Or am i just being lazy right now?
+		const menu_category = document.getElementsByClassName(`menu-category ${item.category.toLowerCase()}`)[0];
+		// Oh my god I've lost my styles using CSS Grid
+		// console.log(typeof menu_category);
 
 		const menu_item = `<div class="item">
 			        <h1 class="name">${item.name}</h1>
 			        <p class="description">${item.description}</p>
 			        <p class="price">$${item.price}</p>
 			</div>`;
+		// console.log(typeof menu_item);
+
+		menu_category.insertAdjacentHTML('afterend', menu_item);
+
 		// Add the item to the DOM
-		menu_category.appendChild(menu_item);
+		// menu_category.innerText = menu_item;
+
+		// console.log(menu_category);
+		// console.log(menu_category.innerText);
 	}
 
 	getBagButtons() {}
