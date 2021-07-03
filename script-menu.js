@@ -70,28 +70,29 @@ class UI {
 		// should i use destructuring here?
 		// console.log(item);
 
-		// KT: Why doesn't querySelector & appendChild work when getElementsByClassName & innerText does?
 		// Why add the menu items 'dynamically' through JS?  Why is this intermediate step necessary before creating the cart?
 		// All the additional styling (spans, emphasizing elements which are not english and native elements, is kind of tedious, but necessary)
 		// The 'dynamic styles' are added within the HTML file is done using JS - seems too complicated for a menu?  Or am i just being lazy right now?
 		const menu_category = document.getElementsByClassName(`menu-category ${item.category.toLowerCase()}`)[0];
-		// Oh my god I've lost my styles using CSS Grid
-		// console.log(typeof menu_category);
 
-		const menu_item = `<div class="item">
-			        <h1 class="name">${item.name}</h1>
-			        <p class="description">${item.description}</p>
-			        <p class="price">$${item.price}</p>
-			</div>`;
-		// console.log(typeof menu_item);
+		let newMenuItem = document.createElement('div');
+		newMenuItem.classList.add('item');
 
-		menu_category.insertAdjacentHTML('afterend', menu_item);
+		let newMenuItemName = document.createElement('h1');
+		newMenuItemName.innerText = `${item.name}`;
+		newMenuItemName.classList.add('name');
 
-		// Add the item to the DOM
-		// menu_category.innerText = menu_item;
+		let newMenuItemDesc = document.createElement('p');
+		newMenuItemDesc.innerText = `${item.description}`;
+		newMenuItemDesc.classList.add('description');
+		// ToDo: add all styling for native words
 
-		// console.log(menu_category);
-		// console.log(menu_category.innerText);
+		let newMenuItemPrice = document.createElement('p');
+		newMenuItemPrice.innerText = `$${item.price}`;
+		newMenuItemPrice.classList.add('price');
+
+		newMenuItem.append(newMenuItemName, newMenuItemDesc, newMenuItemPrice);
+		menu_category.append(newMenuItem);
 	}
 
 	getBagButtons() {}
@@ -122,7 +123,6 @@ class Storage {
 	}
 }
 
-//
 document.addEventListener('DOMContentLoaded', () => {
 	const ui = new UI();
 	const order = new Order();
