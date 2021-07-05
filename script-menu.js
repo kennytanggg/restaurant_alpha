@@ -79,17 +79,47 @@ class UI {
 		newMenuItem.classList.add('item');
 
 		let newMenuItemName = document.createElement('h1');
-		newMenuItemName.innerText = `${item.name}`;
 		newMenuItemName.classList.add('name');
+		newMenuItemName.innerText = `${item.name}`;
 
 		let newMenuItemDesc = document.createElement('p');
-		newMenuItemDesc.innerText = `${item.description}`;
 		newMenuItemDesc.classList.add('description');
+		// newMenuItemDesc.innerText = `${item.description}`;
 		// ToDo: add all styling for native words
+		// Option 1: Iterate through each word, and if any of the words is one of the words in the array, wrap the word in a span tag
+		const arr_native_words = [
+			'sashimi',
+			'miso',
+			'nameko',
+			'wakame',
+			'jako',
+			'negitoro',
+			'sushi',
+			'ikura',
+			'ugo, tokasa',
+		];
+		// console.log(new_arr.join(' '));
+		// newMenuItemDesc.innerHTML = new_arr.join(' '); // KT: is there a way to do this without using innerHTML?  I've heard this isn't the most secure method
+
+		// I should probably iterate through the description, and append the elements as i go through
+		let arr_description = item.description.split(' ');
+
+		arr_description.forEach((word) => {
+			if (arr_native_words.includes(word)) {
+				let span = document.createElement('span');
+				span.classList.add('native-name');
+				span.innerText = word;
+				newMenuItemDesc.append(span, ' '); //KT: Is there a better way of doing this?
+				console.log(newMenuItemDesc);
+			} else {
+				let new_word = document.createTextNode(word);
+				newMenuItemDesc.append(new_word, ' '); //KT: Is there a better way of doing this?
+			}
+		});
 
 		let newMenuItemPrice = document.createElement('p');
-		newMenuItemPrice.innerText = `$${item.price}`;
 		newMenuItemPrice.classList.add('price');
+		newMenuItemPrice.innerText = `$${item.price}`;
 
 		newMenuItem.append(newMenuItemName, newMenuItemDesc, newMenuItemPrice);
 		menu_category.append(newMenuItem);
