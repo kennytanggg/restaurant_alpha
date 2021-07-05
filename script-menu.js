@@ -10,6 +10,7 @@ const cartOverlay = document.querySelector('.cart-overlay');
 const cartContainter = document.querySelector('.cart');
 
 let cart = [];
+const arr_native_words = ['sashimi', 'miso', 'nameko', 'wakame', 'jako', 'negitoro', 'sushi', 'ikura', 'ugo, tokasa'];
 
 // Get the Data
 class Order {
@@ -42,13 +43,20 @@ class UI {
 		cart.forEach(({ category }) => {
 			if (!menu_categories.includes(category)) {
 				menu_categories.push(category);
+
 				const menu_category_header = document.createElement('p');
 				menu_category_header.className = 'header';
 				menu_category_header.innerText = category;
-				contentPrimary.appendChild(menu_category_header);
+
 				const menu_category = document.createElement('div');
 				menu_category.className = `menu-category ${category.toLowerCase()}`;
-				contentPrimary.appendChild(menu_category);
+				if (category == 'Hand Rolls') {
+					const hand_rolls_container = document.createElement('div');
+					hand_rolls_container.classList.add('hand-rolls-container');
+					menu_category.append(hand_rolls_container);
+				}
+
+				contentPrimary.append(menu_category_header, menu_category);
 			}
 		});
 
@@ -56,17 +64,21 @@ class UI {
 		cart.forEach((item) => {
 			let { category, name } = item;
 			if (category == 'Soups' || category == 'Salads') {
-				this.displaySoupOrSalad(item);
+				this.displaySoupOrSaladOrOmakase(item);
+			} else if (category == 'Omakase') {
+				console.log('you have ordered Omakase');
+				this.displaySoupOrSaladOrOmakase(item);
+			} else if (category == 'Hand Rolls') {
+				console.log('you have ordered Hand Rolls');
+				this.displayHandRolls(item);
+			} else if (category == 'a la carte') {
+				console.log('you have ordered a la carte');
+				this.displayALaCarte(item);
 			}
-			// else if (category == 'Omakase') {
-			// 	console.log('you have Omakase');
-			// } else if (category == 'a la carte') {
-			// 	console.log('youve ordered a la carte');
-			// }
 		});
 	}
 
-	displaySoupOrSalad(item) {
+	displaySoupOrSaladOrOmakase(item) {
 		// should i use destructuring here?
 		// console.log(item);
 
@@ -84,23 +96,8 @@ class UI {
 
 		let newMenuItemDesc = document.createElement('p');
 		newMenuItemDesc.classList.add('description');
-		// newMenuItemDesc.innerText = `${item.description}`;
-		// ToDo: add all styling for native words
-		// Option 1: Iterate through each word, and if any of the words is one of the words in the array, wrap the word in a span tag
-		const arr_native_words = [
-			'sashimi',
-			'miso',
-			'nameko',
-			'wakame',
-			'jako',
-			'negitoro',
-			'sushi',
-			'ikura',
-			'ugo, tokasa',
-		];
-		// console.log(new_arr.join(' '));
-		// newMenuItemDesc.innerHTML = new_arr.join(' '); // KT: is there a way to do this without using innerHTML?  I've heard this isn't the most secure method
 
+		// newMenuItemDesc.innerHTML = new_arr.join(' '); // KT: is there a way to do this without using innerHTML?  I've heard this isn't the most secure method
 		// I should probably iterate through the description, and append the elements as i go through
 		let arr_description = item.description.split(' ');
 
@@ -110,7 +107,6 @@ class UI {
 				span.classList.add('native-name');
 				span.innerText = word;
 				newMenuItemDesc.append(span, ' '); //KT: Is there a better way of doing this?
-				console.log(newMenuItemDesc);
 			} else {
 				let new_word = document.createTextNode(word);
 				newMenuItemDesc.append(new_word, ' '); //KT: Is there a better way of doing this?
@@ -119,10 +115,44 @@ class UI {
 
 		let newMenuItemPrice = document.createElement('p');
 		newMenuItemPrice.classList.add('price');
-		newMenuItemPrice.innerText = `$${item.price}`;
+		newMenuItemPrice.innerText = `$${item.price.toFixed(2)}`;
 
 		newMenuItem.append(newMenuItemName, newMenuItemDesc, newMenuItemPrice);
 		menu_category.append(newMenuItem);
+	}
+
+	displayHandRolls(item) {
+		const menu_category = document.getElementsByClassName(`menu-category ${item.category.toLowerCase()}`)[0];
+
+		let handRollSetContainer = document.createElement('div');
+		handRollSetContainer.classList.add('hand-roll-set');
+
+		let handRollHeaderCtnr = document.createElement('div');
+		handRollHeaderCtnr.classList.add('hand-roll-header');
+
+		let handRollHeader = document.createElement('h1');
+		handRollHeader.innerText = `${item.name}`;
+		let handRollPrice = document.createElement('p');
+		handRollPrice.classList.add('price');
+		handRollPrice.innerText = `$${item.price.toFixed(2)}`;
+		handRollHeaderCtnr.append(handRollHeader, handRollPrice);
+
+		handRollSetContainer.append(handRollHeaderCtnr);
+
+		const arr_handRollItems = item.description.split(' ');
+		arr_handRollItems.forEach((word) => {
+			const p = document.createElement('p');
+			p.classList.add('roll-item');
+			p.innerText = word;
+			handRollSetContainer.append(p);
+		});
+
+		const handRollsContainer = document.querySelector('.hand-rolls-container');
+		handRollsContainer.append(handRollSetContainer);
+	}
+
+	displayALaCarte(item) {
+		//SubHeader is not in data model JSON - TOFIX - OR DOES IT NEED TO BE IN THE DATA MODEL?
 	}
 
 	getBagButtons() {}
