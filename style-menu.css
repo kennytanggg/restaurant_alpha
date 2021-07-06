@@ -10,7 +10,7 @@
 	--color-primary: #fff;
 	--color-secondary: #000;
 	--header-color: #f04e29;
-	--sub-header-color: #ec9292;
+	--subheader-color: #ec9292;
 	--border-color: #c6c6c6;
 	--border-hover-color: #707070;
 	--size-text-primary: 1.3rem;
@@ -46,9 +46,9 @@
 	display: inline-block;
 }
 
-.sub-header {
+.subheader {
 	font-size: var(--size-text-primary);
-	color: var(--sub-header-color);
+	color: var(--subheader-color);
 	margin: 10px 0 10px 0;
 }
 

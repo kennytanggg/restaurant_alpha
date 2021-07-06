@@ -166,6 +166,7 @@
 			"description": "Sushi by the piece or serving of Sashimi",
 			"price": 6.5,
 			"category": "a la carte",
+			"subheader": "Tuna",
 			"quantity": 1
 		},
 		{
@@ -174,6 +175,7 @@
 			"description": "Sushi by the piece or serving of Sashimi",
 			"price": 15.0,
 			"category": "a la carte",
+			"subheader": "Tuna",
 			"quantity": 1
 		},
 		{
@@ -182,6 +184,7 @@
 			"description": "Sushi by the piece or serving of Sashimi",
 			"price": 7.0,
 			"category": "a la carte",
+			"subheader": "Yellowtail",
 			"quantity": 1
 		},
 		{
@@ -190,6 +193,7 @@
 			"description": "Sushi by the piece or serving of Sashimi",
 			"price": 8.0,
 			"category": "a la carte",
+			"subheader": "Yellowtail",
 			"quantity": 1
 		},
 		{
@@ -198,6 +202,7 @@
 			"description": "Sushi by the piece or serving of Sashimi",
 			"price": 8.75,
 			"category": "a la carte",
+			"subheader": "Yellowtail",
 			"quantity": 1
 		}
 	]

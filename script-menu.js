@@ -60,27 +60,38 @@ class UI {
 			}
 		});
 
+		const arr_subheaders = [];
 		// KT: Break this up into different categories
 		cart.forEach((item) => {
-			let { category, name } = item;
-			if (category == 'Soups' || category == 'Salads') {
-				this.displaySoupOrSaladOrOmakase(item);
-			} else if (category == 'Omakase') {
-				console.log('you have ordered Omakase');
-				this.displaySoupOrSaladOrOmakase(item);
+			let { category, name, subheader } = item;
+			if (category == 'Soups' || category == 'Salads' || category == 'Omakase' || category == 'a la carte') {
+				this.displaySoupOrSaladOrOmakaseOrALaCarte(item);
 			} else if (category == 'Hand Rolls') {
 				console.log('you have ordered Hand Rolls');
 				this.displayHandRolls(item);
-			} else if (category == 'a la carte') {
-				console.log('you have ordered a la carte');
-				this.displayALaCarte(item);
 			}
+			// Add Subheaders
+			if (!arr_subheaders.includes(subheader)) {
+				arr_subheaders.push(subheader);
+			}
+		});
+
+		// TO FIX
+		const carte = document.querySelectorAll('.a.la.carte');
+		console.log(carte);
+		arr_subheaders.forEach((subheader) => {
+			let sub_header = document.createElement('p');
+			sub_header.classList.add('subheader');
+			sub_header.innerText = subheader;
+			sub_header.innerText = sub_header.innerText.toLowerCase();
+			carte.forEach((menu_category) => {
+				menu_category.insertAdjacentElement('beforebegin', sub_header);
+			});
 		});
 	}
 
-	displaySoupOrSaladOrOmakase(item) {
+	displaySoupOrSaladOrOmakaseOrALaCarte(item) {
 		// should i use destructuring here?
-		// console.log(item);
 
 		// Why add the menu items 'dynamically' through JS?  Why is this intermediate step necessary before creating the cart?
 		// All the additional styling (spans, emphasizing elements which are not english and native elements, is kind of tedious, but necessary)
@@ -149,10 +160,6 @@ class UI {
 
 		const handRollsContainer = document.querySelector('.hand-rolls-container');
 		handRollsContainer.append(handRollSetContainer);
-	}
-
-	displayALaCarte(item) {
-		//SubHeader is not in data model JSON - TOFIX - OR DOES IT NEED TO BE IN THE DATA MODEL?
 	}
 
 	getBagButtons() {}
