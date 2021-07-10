@@ -11,6 +11,7 @@ const cartContainter = document.querySelector('.cart');
 
 let cart = [];
 const arr_native_words = ['sashimi', 'miso', 'nameko', 'wakame', 'jako', 'negitoro', 'sushi', 'ikura', 'ugo, tokasa'];
+let arr_subheaders = [];
 
 // Get the Data
 class Order {
@@ -40,8 +41,8 @@ class UI {
 	displayItems(cart) {
 		let menu_categories = [];
 		// iterate through each category, create a header and a wrapper div
-		cart.forEach(({ category }) => {
-			if (!menu_categories.includes(category)) {
+		cart.forEach(({ category, subheader }) => {
+			if (!menu_categories.includes(category) && category != 'à la carte') {
 				menu_categories.push(category);
 
 				const menu_category_header = document.createElement('p');
@@ -57,28 +58,28 @@ class UI {
 				}
 
 				contentPrimary.append(menu_category_header, menu_category);
-			} else if (category == 'à la carte') {
-				console.log('hello');
+			}
+			if (category == 'à la carte') {
+				if (subheader && !arr_subheaders.includes(subheader)) {
+					arr_subheaders.push(subheader);
+
+					const menu_category_header = document.createElement('p');
+					menu_category_header.className = 'header';
+					menu_category_header.innerText = category;
+
+					const sub_header = document.createElement('p');
+					sub_header.classList.add('subheader');
+					sub_header.innerText = subheader;
+
+					const menu_category = document.createElement('div');
+					menu_category.className = `menu-category ${category.toLowerCase()}`;
+					sub_header.append(menu_category);
+
+					menu_category_header.append(sub_header);
+					contentPrimary.append(menu_category_header);
+				}
 			}
 		});
-
-		console.log(contentPrimary.innerHTML);
-		// Add subheaders
-		let arr_headers = document.querySelectorAll('.header');
-		[...arr_headers].forEach((header) => console.log(header));
-		// ].filter((header) => header.innerText == 'à la carte');
-		// console.log(arr_headers);
-		// let arr_subheaders = [];
-		// for (let i = 0; i < arr_headers.length; i++) {
-		// 	cart.forEach(({ subheader }) => {
-		// 		if (subheader && !arr_subheaders.includes(subheader)) {
-		// 			const sub = document.createElement('p');
-		// 			sub.classList.add('subheader');
-		// 			sub.innerText = subheader;
-		// 			arr_headers[i].append(sub);
-		// 		}
-		// 	});
-		// }
 
 		// KT: Break this up into different categories
 		cart.forEach((item) => {
@@ -91,17 +92,6 @@ class UI {
 				this.displayALaCarte(item);
 			}
 		});
-
-		// TO FIX
-		// const carte = document.querySelectorAll('.à.la.carte');
-		// arr_subheaders.forEach((subheader) => {
-		// 	let sub_header = document.createElement('p');
-		// 	sub_header.classList.add('subheader');
-		// 	sub_header.innerText = subheader;
-		// 	carte.forEach((menu_category) => {
-		// 		menu_category.insertAdjacentElement('beforebegin', sub_header);
-		// 	});
-		// });
 	}
 
 	displaySoupOrSaladOrOmakase(item) {
@@ -177,12 +167,6 @@ class UI {
 	}
 
 	displayALaCarte(item) {
-		// console.log(item);
-		const arr_subheaders = [];
-		if (!arr_subheaders.includes(item.subheader)) {
-			arr_subheaders.push(item.subheader);
-		}
-
 		let newMenuItem = document.createElement('div');
 		newMenuItem.classList.add('item');
 
@@ -211,9 +195,18 @@ class UI {
 		newMenuItemPrice.classList.add('price');
 		newMenuItemPrice.innerText = `$${item.price.toFixed(2)}`;
 
-		const subheader = document.createElement('p');
-		subheader.classList.add('subheader');
-		subheader.innerText = item.subheader.toLowerCase();
+		newMenuItem.append(newMenuItemName, newMenuItemDesc, newMenuItemPrice);
+		const alacartenodes = [...document.querySelectorAll('.carte')];
+
+		console.log(alacartenodes);
+		// Cross reference 2 lists
+		arr_subheaders.forEach((subheader) => {
+			alacartenodes.forEach((node) => {
+				if (node.contains(subheader)) {
+					console.log('eureka');
+				}
+			});
+		});
 	}
 
 	getBagButtons() {}
