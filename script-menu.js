@@ -57,40 +57,54 @@ class UI {
 				}
 
 				contentPrimary.append(menu_category_header, menu_category);
+			} else if (category == 'à la carte') {
+				console.log('hello');
 			}
 		});
 
-		const arr_subheaders = [];
+		console.log(contentPrimary.innerHTML);
+		// Add subheaders
+		let arr_headers = document.querySelectorAll('.header');
+		[...arr_headers].forEach((header) => console.log(header));
+		// ].filter((header) => header.innerText == 'à la carte');
+		// console.log(arr_headers);
+		// let arr_subheaders = [];
+		// for (let i = 0; i < arr_headers.length; i++) {
+		// 	cart.forEach(({ subheader }) => {
+		// 		if (subheader && !arr_subheaders.includes(subheader)) {
+		// 			const sub = document.createElement('p');
+		// 			sub.classList.add('subheader');
+		// 			sub.innerText = subheader;
+		// 			arr_headers[i].append(sub);
+		// 		}
+		// 	});
+		// }
+
 		// KT: Break this up into different categories
 		cart.forEach((item) => {
 			let { category, name, subheader } = item;
-			if (category == 'Soups' || category == 'Salads' || category == 'Omakase' || category == 'a la carte') {
-				this.displaySoupOrSaladOrOmakaseOrALaCarte(item);
+			if (category == 'Soups' || category == 'Salads' || category == 'Omakase') {
+				this.displaySoupOrSaladOrOmakase(item);
 			} else if (category == 'Hand Rolls') {
-				console.log('you have ordered Hand Rolls');
 				this.displayHandRolls(item);
-			}
-			// Add Subheaders
-			if (!arr_subheaders.includes(subheader)) {
-				arr_subheaders.push(subheader);
+			} else if (category == 'à la carte') {
+				this.displayALaCarte(item);
 			}
 		});
 
 		// TO FIX
-		const carte = document.querySelectorAll('.a.la.carte');
-		console.log(carte);
-		arr_subheaders.forEach((subheader) => {
-			let sub_header = document.createElement('p');
-			sub_header.classList.add('subheader');
-			sub_header.innerText = subheader;
-			sub_header.innerText = sub_header.innerText.toLowerCase();
-			carte.forEach((menu_category) => {
-				menu_category.insertAdjacentElement('beforebegin', sub_header);
-			});
-		});
+		// const carte = document.querySelectorAll('.à.la.carte');
+		// arr_subheaders.forEach((subheader) => {
+		// 	let sub_header = document.createElement('p');
+		// 	sub_header.classList.add('subheader');
+		// 	sub_header.innerText = subheader;
+		// 	carte.forEach((menu_category) => {
+		// 		menu_category.insertAdjacentElement('beforebegin', sub_header);
+		// 	});
+		// });
 	}
 
-	displaySoupOrSaladOrOmakaseOrALaCarte(item) {
+	displaySoupOrSaladOrOmakase(item) {
 		// should i use destructuring here?
 
 		// Why add the menu items 'dynamically' through JS?  Why is this intermediate step necessary before creating the cart?
@@ -160,6 +174,46 @@ class UI {
 
 		const handRollsContainer = document.querySelector('.hand-rolls-container');
 		handRollsContainer.append(handRollSetContainer);
+	}
+
+	displayALaCarte(item) {
+		// console.log(item);
+		const arr_subheaders = [];
+		if (!arr_subheaders.includes(item.subheader)) {
+			arr_subheaders.push(item.subheader);
+		}
+
+		let newMenuItem = document.createElement('div');
+		newMenuItem.classList.add('item');
+
+		let newMenuItemName = document.createElement('h1');
+		newMenuItemName.classList.add('name');
+		newMenuItemName.innerText = `${item.name}`;
+
+		let newMenuItemDesc = document.createElement('p');
+		newMenuItemDesc.classList.add('description');
+
+		let arr_description = item.description.split(' ');
+
+		arr_description.forEach((word) => {
+			if (arr_native_words.includes(word)) {
+				let span = document.createElement('span');
+				span.classList.add('native-name');
+				span.innerText = word;
+				newMenuItemDesc.append(span, ' '); //KT: Is there a better way of doing this?
+			} else {
+				let new_word = document.createTextNode(word);
+				newMenuItemDesc.append(new_word, ' '); //KT: Is there a better way of doing this?
+			}
+		});
+
+		let newMenuItemPrice = document.createElement('p');
+		newMenuItemPrice.classList.add('price');
+		newMenuItemPrice.innerText = `$${item.price.toFixed(2)}`;
+
+		const subheader = document.createElement('p');
+		subheader.classList.add('subheader');
+		subheader.innerText = item.subheader.toLowerCase();
 	}
 
 	getBagButtons() {}

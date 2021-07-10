@@ -165,7 +165,7 @@
 			"name": "Blue Fin Tuna - Toro (Spain)",
 			"description": "Sushi by the piece or serving of Sashimi",
 			"price": 6.5,
-			"category": "a la carte",
+			"category": "à la carte",
 			"subheader": "Tuna",
 			"quantity": 1
 		},
@@ -174,7 +174,7 @@
 			"name": "Blue Fin Fatty Tuna - Toro (Spain)",
 			"description": "Sushi by the piece or serving of Sashimi",
 			"price": 15.0,
-			"category": "a la carte",
+			"category": "à la carte",
 			"subheader": "Tuna",
 			"quantity": 1
 		},
@@ -183,7 +183,7 @@
 			"name": "Hamachi (Kumamoto)",
 			"description": "Sushi by the piece or serving of Sashimi",
 			"price": 7.0,
-			"category": "a la carte",
+			"category": "à la carte",
 			"subheader": "Yellowtail",
 			"quantity": 1
 		},
@@ -192,7 +192,7 @@
 			"name": "Striped Jack – Shimaaji (Oita)",
 			"description": "Sushi by the piece or serving of Sashimi",
 			"price": 8.0,
-			"category": "a la carte",
+			"category": "à la carte",
 			"subheader": "Yellowtail",
 			"quantity": 1
 		},
@@ -201,7 +201,7 @@
 			"name": "Greater Amberjack – Kanpachi (Kagoshima)",
 			"description": "Sushi by the piece or serving of Sashimi",
 			"price": 8.75,
-			"category": "a la carte",
+			"category": "à la carte",
 			"subheader": "Yellowtail",
 			"quantity": 1
 		}
