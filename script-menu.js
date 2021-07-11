@@ -18,7 +18,7 @@ class Order {
 	async getItems() {
 		// You're using the fetch method to access a static file
 		try {
-			let result = await fetch('order.json');
+			let result = await fetch('items.json');
 			let data = await result.json();
 			let order = data.items;
 			order = order.map((item) => {
@@ -207,7 +207,10 @@ class UI {
 		});
 	}
 
-	getBagButtons() {}
+	getBagButtons() {
+		const items = document.querySelectorAll('.item');
+		console.log(items);
+	}
 	showCart(cart) {}
 	setCartValues(cart) {}
 	populateCart(cart) {}
@@ -224,13 +227,17 @@ class Cart {
 
 // Persist the data
 class Storage {
-	saveCart() {
+	static saveItems(items) {
+		localStorage.setItem('items', JSON.stringify(items));
+	}
+
+	static saveCart() {
 		localStorage.setItem('cart', cart);
 	}
-	getCart() {
+	static getCart() {
 		cart = localStorage.getItem('cart');
 	}
-	clearCart() {
+	static clearCart() {
 		localStorage.removeItem('cart');
 	}
 }
@@ -240,11 +247,31 @@ document.addEventListener('DOMContentLoaded', () => {
 	const order = new Order();
 
 	// When do i have access to the elements on the page, now, or later?
-	cart = order.getItems().then((data) => {
-		// console.log(data);
-		ui.displayItems(data);
-	});
+	order
+		.getItems()
+		.then((data) => {
+			ui.displayItems(data);
+			Storage.saveItems(data);
+		})
+		.then(() => {
+			// wow this line was cool
+			const items = document.querySelectorAll('.item');
+			items.forEach((item) => {
+				const addToCartBtn = document.createElement('button');
+				addToCartBtn.classList.add('buy-Btn');
+				addToCartBtn.innerText = 'Add to Cart';
+				item.append(addToCartBtn);
+				item.addEventListener('mouseenter', () => {
+					addToCartBtn.classList.add('active');
+				});
+				item.addEventListener('mouseleave', () => {
+					addToCartBtn.classList.remove('active');
+				});
+			});
+		});
 
-	// Now to RENDER THE DATA
+	// ui.getBagButtons();
+	// add an event listener on each item
+	// create a buttom and give it a class
+	// use CSS to style that button
 });
-// get all products

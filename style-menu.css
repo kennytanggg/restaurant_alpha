@@ -30,6 +30,7 @@
 	/* TODO: WHY DOES IT FEEL LIKE THERE'S 2 SCROLLBARS */
 	overflow-x: hidden;
 	overflow-y: visible;
+	padding-bottom: 10%;
 }
 
 .menu-category {
@@ -125,4 +126,23 @@
 
 .roll-item {
 	font-size: var(--size-text-secondary);
+}
+
+.buy-Btn {
+	color: #fff;
+	background-color: var(--header-color);
+	font-size: 1rem;
+	position: absolute;
+	top: 70%;
+	right: 01%;
+	border-radius: 5%;
+	padding: 10px;
+	visibility: hidden;
+	opacity: 0;
+}
+
+.buy-Btn.active {
+	display: block;
+	opacity: 1;
+	visibility: visible;
 }
