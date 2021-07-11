@@ -139,6 +139,7 @@
 	padding: 10px;
 	visibility: hidden;
 	opacity: 0;
+	outline: none;
 }
 
 .buy-Btn.active {

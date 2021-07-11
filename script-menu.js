@@ -207,9 +207,24 @@ class UI {
 		});
 	}
 
+	// TODO: You need a way to get information about the item from the directory/dataset and extract it to put into the cart
+	// The button can have a dataset attribute, which can have an ID attached upon its creation
+	// You can use this ID to query the dataset for its info
 	getBagButtons() {
-		const items = document.querySelectorAll('.item');
-		console.log(items);
+		const items = [...document.querySelectorAll('.item')];
+		items.forEach((item) => {
+			const addToCartBtn = document.createElement('button');
+			addToCartBtn.classList.add('buy-Btn');
+			addToCartBtn.innerText = 'Add to Cart';
+			// addToCartBtn.addEventListener('click', addItemToCart);
+			item.append(addToCartBtn);
+			item.addEventListener('mouseenter', () => {
+				addToCartBtn.classList.add('active');
+			});
+			item.addEventListener('mouseleave', () => {
+				addToCartBtn.classList.remove('active');
+			});
+		});
 	}
 	showCart(cart) {}
 	setCartValues(cart) {}
@@ -255,19 +270,7 @@ document.addEventListener('DOMContentLoaded', () => {
 		})
 		.then(() => {
 			// wow this line was cool
-			const items = document.querySelectorAll('.item');
-			items.forEach((item) => {
-				const addToCartBtn = document.createElement('button');
-				addToCartBtn.classList.add('buy-Btn');
-				addToCartBtn.innerText = 'Add to Cart';
-				item.append(addToCartBtn);
-				item.addEventListener('mouseenter', () => {
-					addToCartBtn.classList.add('active');
-				});
-				item.addEventListener('mouseleave', () => {
-					addToCartBtn.classList.remove('active');
-				});
-			});
+			ui.getBagButtons();
 		});
 
 	// ui.getBagButtons();
