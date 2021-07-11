@@ -57,7 +57,8 @@ class UI {
 					menu_category.append(hand_rolls_container);
 				}
 
-				contentPrimary.append(menu_category_header, menu_category);
+				contentPrimary.append(menu_category_header);
+				contentPrimary.append(menu_category);
 			}
 			if (category == 'à la carte') {
 				if (subheader && !arr_subheaders.includes(subheader)) {
@@ -73,10 +74,8 @@ class UI {
 
 					const menu_category = document.createElement('div');
 					menu_category.className = `menu-category ${category.toLowerCase()}`;
-					sub_header.append(menu_category);
 
-					menu_category_header.append(sub_header);
-					contentPrimary.append(menu_category_header);
+					contentPrimary.append(menu_category_header, sub_header, menu_category);
 				}
 			}
 		});
@@ -196,16 +195,15 @@ class UI {
 		newMenuItemPrice.innerText = `$${item.price.toFixed(2)}`;
 
 		newMenuItem.append(newMenuItemName, newMenuItemDesc, newMenuItemPrice);
+
 		const alacartenodes = [...document.querySelectorAll('.carte')];
 
-		console.log(alacartenodes);
-		// Cross reference 2 lists
-		arr_subheaders.forEach((subheader) => {
-			alacartenodes.forEach((node) => {
-				if (node.contains(subheader)) {
-					console.log('eureka');
-				}
-			});
+		// Look thru subheaders, find the sibling div, and append the Item
+		const subheaders = [...document.querySelectorAll('.subheader')];
+		subheaders.forEach((subheader) => {
+			if (item.subheader == subheader.innerText) {
+				subheader.nextSibling.append(newMenuItem);
+			}
 		});
 	}
 
