@@ -86,6 +86,7 @@ let size;
 
 function cycleCards() {
 	setInterval(() => {
+		// There are 2 cases which cause the cycling to not look smooth
 		if (index < arr_imgs.length - 1) {
 			index = ++index;
 			nextCard = document.getElementById(`card-${index}`);
@@ -96,6 +97,7 @@ function cycleCards() {
 			});
 		} else if (index == arr_imgs.length - 1) {
 			index = 0;
+			let firstCard = document.getElementById(`card-${index}`);
 			firstCard.scrollIntoView({
 				behavior: 'smooth',
 				block: 'end',
@@ -107,7 +109,9 @@ function cycleCards() {
 
 createCards();
 contentPrimary.appendChild(cards);
-// cycleCards();
+const firstCard = document.getElementById('card-0');
+const lastCard = document.getElementById(`card-${arr_imgs.length - 1}`);
+cycleCards(); //KT: To fix - how to smooth out the edge cases?
 
 // Event Listeners
 prevBtn.addEventListener('click', () => {
@@ -137,8 +141,8 @@ prevBtn.addEventListener('click', () => {
 	//#endregion
 
 	//#region Attempt 2: transform/translate
-	cards.style.transition = 'transform 0.4s ease-in-out';
 	size = document.getElementById(`card-0`).clientWidth;
+	cards.style.transition = '0.4s ease-in-out';
 	if (index == 0) {
 		index = arr_imgs.length - 1;
 		cards.style.transform = 'translateX(' + -size * (arr_imgs.length - 1) + 'px)';
@@ -170,8 +174,8 @@ nextBtn.addEventListener('click', () => {
 	//#endregion
 
 	//#region Attempt 2: transform/translate
-	cards.style.transition = 'transform 0.4s ease-in-out';
 	size = document.getElementById(`card-0`).clientWidth;
+	cards.style.transition = '0.4s ease-in-out';
 	if (index == arr_imgs.length - 1) {
 		index = 0;
 		cards.style.transform = 'translateX(0px)';
@@ -181,6 +185,17 @@ nextBtn.addEventListener('click', () => {
 	}
 	//#endregion
 });
+
+// Remove transition property from the last card
+// Translate the primary content to the first card
+// contentPrimary.addEventListener('transitionend', () => {
+// 	if (index == arr_imgs.length - 1) {
+// 		console.log('hello again');
+// 		cards.style.transition = 'none';
+// 		firstCard.style.transition = 'none';
+// 		cards.style.transform = 'translateX(' + -size * index + 'px)';
+// 	}
+// });
 
 downBtn.addEventListener('click', () => {
 	contentSecondary.scrollIntoView({

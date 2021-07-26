@@ -210,6 +210,8 @@ class UI {
 	// TODO: You need a way to get information about the item from the directory/dataset and extract it to put into the cart
 	// The button can have a dataset attribute, which can have an ID attached upon its creation
 	// You can use this ID to query the dataset for its info
+	// Add the item to the cart content
+
 	getBagButtons() {
 		const items = [...document.querySelectorAll('.item')];
 		items.forEach((item) => {
