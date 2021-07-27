@@ -12,6 +12,7 @@ const cartContainter = document.querySelector('.cart');
 let cart = [];
 const arr_native_words = ['sashimi', 'miso', 'nameko', 'wakame', 'jako', 'negitoro', 'sushi', 'ikura', 'ugo, tokasa'];
 let arr_subheaders = [];
+let buttonsDOM = [];
 
 // Get the Data
 class Order {
@@ -82,7 +83,7 @@ class UI {
 
 		// KT: Break this up into different categories
 		cart.forEach((item) => {
-			let { category, name, subheader } = item;
+			let { id, category, name, subheader } = item;
 			if (category == 'Soups' || category == 'Salads' || category == 'Omakase') {
 				this.displaySoupOrSaladOrOmakase(item);
 			} else if (category == 'Hand Rolls') {
@@ -131,7 +132,12 @@ class UI {
 		newMenuItemPrice.classList.add('price');
 		newMenuItemPrice.innerText = `$${item.price.toFixed(2)}`;
 
-		newMenuItem.append(newMenuItemName, newMenuItemDesc, newMenuItemPrice);
+		const addToCartBtn = document.createElement('button');
+		addToCartBtn.dataset.id = `${item.id}`; // Is this different from data-id?
+		addToCartBtn.classList.add('buy-Btn');
+		addToCartBtn.innerText = 'Add to Cart';
+
+		newMenuItem.append(newMenuItemName, newMenuItemDesc, newMenuItemPrice, addToCartBtn);
 		menu_category.append(newMenuItem);
 	}
 
@@ -149,7 +155,13 @@ class UI {
 		let handRollPrice = document.createElement('p');
 		handRollPrice.classList.add('price');
 		handRollPrice.innerText = `$${item.price.toFixed(2)}`;
-		handRollHeaderCtnr.append(handRollHeader, handRollPrice);
+
+		const addToCartBtn = document.createElement('button');
+		addToCartBtn.dataset.id = `${item.id}`; // Is this different from data-id?
+		addToCartBtn.classList.add('buy-Btn');
+		addToCartBtn.innerText = 'Add to Cart';
+
+		handRollHeaderCtnr.append(handRollHeader, handRollPrice, addToCartBtn);
 
 		handRollSetContainer.append(handRollHeaderCtnr);
 
@@ -194,7 +206,12 @@ class UI {
 		newMenuItemPrice.classList.add('price');
 		newMenuItemPrice.innerText = `$${item.price.toFixed(2)}`;
 
-		newMenuItem.append(newMenuItemName, newMenuItemDesc, newMenuItemPrice);
+		const addToCartBtn = document.createElement('button');
+		addToCartBtn.dataset.id = `${item.id}`; // Is this different from data-id?
+		addToCartBtn.classList.add('buy-Btn');
+		addToCartBtn.innerText = 'Add to Cart';
+
+		newMenuItem.append(newMenuItemName, newMenuItemDesc, newMenuItemPrice, addToCartBtn);
 
 		const alacartenodes = [...document.querySelectorAll('.carte')];
 
@@ -215,16 +232,24 @@ class UI {
 	getBagButtons() {
 		const items = [...document.querySelectorAll('.item')];
 		items.forEach((item) => {
-			const addToCartBtn = document.createElement('button');
-			addToCartBtn.classList.add('buy-Btn');
-			addToCartBtn.innerText = 'Add to Cart';
-			// addToCartBtn.addEventListener('click', addItemToCart);
-			item.append(addToCartBtn);
+			const addToCartBtn = item.lastChild;
 			item.addEventListener('mouseenter', () => {
 				addToCartBtn.classList.add('active');
 			});
 			item.addEventListener('mouseleave', () => {
 				addToCartBtn.classList.remove('active');
+			});
+			addToCartBtn.addEventListener('click', () => {
+				console.log('you clicked me');
+				// create the elements and map the data, use the id to extract the data from the products / local storage?
+				// get item from items
+				let cartItem = Storage.getItem(addToCartBtn.dataset.id);
+				console.log(cartItem);
+				// add product to the cart
+				// save cart in local storage
+				// set cart values
+				// display cart item
+				// display the cart - make the view or nav window active
 			});
 		});
 	}
@@ -244,6 +269,11 @@ class Cart {
 
 // Persist the data
 class Storage {
+	static getItem(id) {
+		let items = JSON.parse(localStorage.getItem('items'));
+		return items.find((item) => item.id == id); // why not triple === vs double ==?
+	}
+
 	static saveItems(items) {
 		localStorage.setItem('items', JSON.stringify(items));
 	}
