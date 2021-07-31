@@ -7,18 +7,18 @@ const navbarPrimary = document.getElementById('navbar-primary');
 const orderBtn = navbarPrimary.lastElementChild.lastElementChild.lastElementChild;
 const closeBtn = document.querySelector('.close-btn');
 const cartOverlay = document.querySelector('.cart-overlay');
-const cartContainter = document.querySelector('.cart');
+const cartContainer = document.querySelector('.cart');
 
 let cart = [];
 
 orderBtn.addEventListener('click', () => {
 	cartOverlay.style.visibility = 'visible';
-	cartContainter.style.visibility = 'visible';
+	cartContainer.style.visibility = 'visible';
 });
 
 closeBtn.addEventListener('click', () => {
 	cartOverlay.style.visibility = 'hidden';
-	cartContainter.style.visibility = 'hidden';
+	cartContainer.style.visibility = 'hidden';
 });
 
 // KT: I wanted to simulate getting images from somewhere else, not the local machine.

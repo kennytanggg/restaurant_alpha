@@ -7,9 +7,21 @@ const navbarPrimary = document.getElementById('navbar-primary');
 const orderBtn = navbarPrimary.lastElementChild.lastElementChild.lastElementChild;
 const closeBtn = document.querySelector('.close-btn');
 const cartOverlay = document.querySelector('.cart-overlay');
-const cartContainter = document.querySelector('.cart');
+const cartContainer = document.querySelector('.cart');
+const cartContent = document.querySelector('.cart-content');
 
 let cart = [];
+
+orderBtn.addEventListener('click', () => {
+	cartOverlay.style.visibility = 'visible';
+	cartContainer.style.visibility = 'visible';
+});
+
+closeBtn.addEventListener('click', () => {
+	cartOverlay.style.visibility = 'hidden';
+	cartContainer.style.visibility = 'hidden';
+});
+
 const arr_native_words = ['sashimi', 'miso', 'nameko', 'wakame', 'jako', 'negitoro', 'sushi', 'ikura', 'ugo, tokasa'];
 let arr_subheaders = [];
 let buttonsDOM = [];
@@ -224,11 +236,10 @@ class UI {
 		});
 	}
 
-	// TODO: You need a way to get information about the item from the directory/dataset and extract it to put into the cart
+	// This function is a way to get information about the item from the directory/dataset and extract it to put into the cart
 	// The button can have a dataset attribute, which can have an ID attached upon its creation
 	// You can use this ID to query the dataset for its info
 	// Add the item to the cart content
-
 	getBagButtons() {
 		const items = [...document.querySelectorAll('.item')];
 		items.forEach((item) => {
@@ -243,12 +254,61 @@ class UI {
 				console.log('you clicked me');
 				// create the elements and map the data, use the id to extract the data from the products / local storage?
 				// get item from items
+				// This line calls a static method which uses the id from the button (clicked element), to search through local storage for the item with the corresponding id
 				let cartItem = Storage.getItem(addToCartBtn.dataset.id);
 				console.log(cartItem);
-				// add product to the cart
+
+				// Display overlay, cart, and add the HTML to display that item on the cart
+
+				let itemContainer = document.createElement('article');
+				itemContainer.classList.add('item-container');
+
+				let itemQtyContainer = document.createElement('div');
+				itemQtyContainer.classList.add('item-quantity');
+				let incBtn = document.createElement('button');
+				incBtn.classList.add('increment-item-btn');
+				let incIcon = document.createElement('i');
+				incIcon.classList = 'fas fa-chevron-up';
+				incBtn.append(incIcon);
+				let itemQty = document.createElement('p');
+				itemQty.classList.add('quantity');
+				itemQty.innerText = 1;
+				let decBtn = document.createElement('button');
+				decBtn.classList.add('decrement-item-btn');
+				let decIcon = document.createElement('i');
+				decIcon.classList = 'fas fa-chevron-down';
+				decBtn.append(decIcon);
+				itemQtyContainer.append(incBtn, itemQty, decBtn);
+
+				let descContainer = document.createElement('div');
+				descContainer.classList.add('item-description');
+				let itemName = document.createElement('p');
+				itemName.classList.add('item-name');
+				itemName.innerText = cartItem.name;
+				let removeBtn = document.createElement('button');
+				removeBtn.classList.add('remove-item-btn');
+				removeBtn.innerText = 'Remove From Cart';
+				descContainer.append(itemName, removeBtn);
+
+				let priceContainer = document.createElement('div');
+				priceContainer.classList.add('item-price');
+				let price = document.createElement('p');
+				price.classList.add('price');
+				price.innerText = `$${cartItem.price.toFixed(2)}`;
+				priceContainer.append(price);
+
+				itemContainer.append(itemQtyContainer, descContainer, priceContainer);
+				cartContent.append(itemContainer);
+
+				// cartOverlay.style.visibility = 'visible';
+				// cartContainer.style.visibility = 'visible'; // I want the user to see the quantity updated, but be able to continue adding items to the cart
+
 				// save cart in local storage
+
 				// set cart values
+
 				// display cart item
+
 				// display the cart - make the view or nav window active
 			});
 		});
