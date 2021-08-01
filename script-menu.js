@@ -305,6 +305,22 @@ class UI {
 					let removeBtn = document.createElement('button');
 					removeBtn.classList.add('remove-item-btn');
 					removeBtn.innerText = 'Remove From Cart';
+					removeBtn.addEventListener('click', () => {
+						if (cartItem.quantity != 1) {
+							cartItem.quantity--;
+							let uiEls = [...document.querySelectorAll('.quantity')];
+							let inCart_ui = uiEls.find((uiEl) => uiEl.getAttribute('data-id') == cartItem.id);
+							inCart_ui.innerText = cartItem.quantity;
+						} else if (cartItem.quantity == 1) {
+							let localCartItemIndex = cart.indexOf(cartItem);
+							if (localCartItemIndex > -1) {
+								cart.splice(localCartItemIndex, 1);
+								Storage.saveCart(cart);
+							}
+
+							itemContainer.remove();
+						}
+					});
 					descContainer.append(itemName, removeBtn);
 
 					let priceContainer = document.createElement('div');
@@ -327,13 +343,11 @@ class UI {
 					let uiEls = [...document.querySelectorAll('.quantity')];
 					let inCart_ui = uiEls.find((uiEl) => uiEl.getAttribute('data-id') == inCart.id);
 					inCart_ui.innerText = inCart.quantity;
-					console.log(inCart, 'quantity:', inCart.quantity);
 				}
 
 				// save cart in local storage
 				// console.log(cart);
 				Storage.saveCart(cart);
-				console.log(cart);
 
 				// set cart values
 				this.updateCartValues(cart);
@@ -385,6 +399,7 @@ class Storage {
 	static clearCart() {
 		localStorage.removeItem('cart');
 		cartContent.textContent = '';
+		cart = [];
 	}
 }
 
