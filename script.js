@@ -6,6 +6,7 @@ const contentSecondary = document.getElementById('content-secondary');
 const navbarPrimary = document.getElementById('navbar-primary');
 const orderBtn = navbarPrimary.lastElementChild.lastElementChild.lastElementChild;
 const closeBtn = document.querySelector('.close-btn');
+const clearCartBtn = document.querySelector('.clear-cart-btn');
 const cartOverlay = document.querySelector('.cart-overlay');
 const cartContainer = document.querySelector('.cart');
 

@@ -26,10 +26,10 @@
 
 .content-primary {
 	height: 100%;
-	max-width: 85%; /* there must be a better way to show the scrollbar */
+	max-width: 85%; /* there must be a better way to prevent the horizontal scrollbar and overflow of content */
 	position: absolute;
 	top: 10%;
-	left: 12.5%;
+	left: 15%;
 	/* overflow: auto; */
 	/* TODO: WHY DOES IT FEEL LIKE THERE'S 2 SCROLLBARS */
 	overflow-x: hidden;

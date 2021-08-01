@@ -6,6 +6,7 @@ const contentSecondary = document.getElementById('content-secondary');
 const navbarPrimary = document.getElementById('navbar-primary');
 const orderBtn = navbarPrimary.lastElementChild.lastElementChild.lastElementChild;
 const closeBtn = document.querySelector('.close-btn');
+const clearCartBtn = document.querySelector('.clear-cart-btn');
 const cartOverlay = document.querySelector('.cart-overlay');
 const cartContainer = document.querySelector('.cart');
 const cartContent = document.querySelector('.cart-content');
@@ -20,6 +21,10 @@ orderBtn.addEventListener('click', () => {
 closeBtn.addEventListener('click', () => {
 	cartOverlay.style.visibility = 'hidden';
 	cartContainer.style.visibility = 'hidden';
+});
+
+clearCartBtn.addEventListener('click', () => {
+	Storage.clearCart();
 });
 
 const arr_native_words = ['sashimi', 'miso', 'nameko', 'wakame', 'jako', 'negitoro', 'sushi', 'ikura', 'ugo, tokasa'];
@@ -251,75 +256,110 @@ class UI {
 				addToCartBtn.classList.remove('active');
 			});
 			addToCartBtn.addEventListener('click', () => {
-				console.log('you clicked me');
-				// create the elements and map the data, use the id to extract the data from the products / local storage?
-				// get item from items
-				// This line calls a static method which uses the id from the button (clicked element), to search through local storage for the item with the corresponding id
 				let cartItem = Storage.getItem(addToCartBtn.dataset.id);
-				console.log(cartItem);
-
-				// Display overlay, cart, and add the HTML to display that item on the cart
-
-				let itemContainer = document.createElement('article');
-				itemContainer.classList.add('item-container');
-
-				let itemQtyContainer = document.createElement('div');
-				itemQtyContainer.classList.add('item-quantity');
-				let incBtn = document.createElement('button');
-				incBtn.classList.add('increment-item-btn');
-				let incIcon = document.createElement('i');
-				incIcon.classList = 'fas fa-chevron-up';
-				incBtn.append(incIcon);
-				let itemQty = document.createElement('p');
-				itemQty.classList.add('quantity');
-				itemQty.innerText = 1;
-				let decBtn = document.createElement('button');
-				decBtn.classList.add('decrement-item-btn');
-				let decIcon = document.createElement('i');
-				decIcon.classList = 'fas fa-chevron-down';
-				decBtn.append(decIcon);
-				itemQtyContainer.append(incBtn, itemQty, decBtn);
-
-				let descContainer = document.createElement('div');
-				descContainer.classList.add('item-description');
-				let itemName = document.createElement('p');
-				itemName.classList.add('item-name');
-				itemName.innerText = cartItem.name;
-				let removeBtn = document.createElement('button');
-				removeBtn.classList.add('remove-item-btn');
-				removeBtn.innerText = 'Remove From Cart';
-				descContainer.append(itemName, removeBtn);
-
-				let priceContainer = document.createElement('div');
-				priceContainer.classList.add('item-price');
-				let price = document.createElement('p');
-				price.classList.add('price');
-				price.innerText = `$${cartItem.price.toFixed(2)}`;
-				priceContainer.append(price);
-
-				itemContainer.append(itemQtyContainer, descContainer, priceContainer);
-				cartContent.append(itemContainer);
-
 				// cartOverlay.style.visibility = 'visible';
 				// cartContainer.style.visibility = 'visible'; // I want the user to see the quantity updated, but be able to continue adding items to the cart
 
+				// REFERENCE
+				// GET PRODUCT FROM PRODUCTS
+				// ADD PRODUCT TO CART
+				// SAVE CART IN LOCALSTORAGE
+				// SET CART VALUES
+				// DISPLAY CART ITEM
+				// SHOWCART
+
+				let inCart = cart.find((menu_item) => {
+					return menu_item.id === cartItem.id;
+				});
+
+				if (!inCart) {
+					cartItem['quantity'] = Number('1');
+					cart.push(cartItem);
+
+					let itemContainer = document.createElement('article');
+					itemContainer.classList.add('item-container');
+
+					let itemQtyContainer = document.createElement('div');
+					itemQtyContainer.classList.add('item-quantity');
+					let incBtn = document.createElement('button');
+					incBtn.classList.add('increment-item-btn');
+					let incIcon = document.createElement('i');
+					incIcon.classList = 'fas fa-chevron-up';
+					incBtn.append(incIcon);
+					let itemQty = document.createElement('p');
+					itemQty.classList.add('quantity');
+					itemQty.innerText = cartItem.quantity;
+					itemQty.dataset.id = cartItem.id;
+					let decBtn = document.createElement('button');
+					decBtn.classList.add('decrement-item-btn');
+					let decIcon = document.createElement('i');
+					decIcon.classList = 'fas fa-chevron-down';
+					decBtn.append(decIcon);
+					itemQtyContainer.append(incBtn, itemQty, decBtn);
+
+					let descContainer = document.createElement('div');
+					descContainer.classList.add('item-description');
+					let itemName = document.createElement('p');
+					itemName.classList.add('item-name');
+					itemName.innerText = cartItem.name;
+					let removeBtn = document.createElement('button');
+					removeBtn.classList.add('remove-item-btn');
+					removeBtn.innerText = 'Remove From Cart';
+					descContainer.append(itemName, removeBtn);
+
+					let priceContainer = document.createElement('div');
+					priceContainer.classList.add('item-price');
+					let price = document.createElement('p');
+					price.classList.add('price');
+					price.innerText = `$${cartItem.price.toFixed(2)}`;
+					priceContainer.append(price);
+
+					itemContainer.append(itemQtyContainer, descContainer, priceContainer);
+					cartContent.append(itemContainer);
+				} else if (inCart) {
+					// If the item is already in the cart...
+					console.log(inCart);
+
+					console.log('this item already exists in the cart');
+					// Update Cart Quantity
+					inCart.quantity++;
+					// Update UI Quantity
+					let uiEls = [...document.querySelectorAll('.quantity')];
+					let inCart_ui = uiEls.find((uiEl) => uiEl.getAttribute('data-id') == inCart.id);
+					inCart_ui.innerText = inCart.quantity;
+					console.log(inCart, 'quantity:', inCart.quantity);
+				}
+
 				// save cart in local storage
+				// console.log(cart);
+				Storage.saveCart(cart);
+				console.log(cart);
 
 				// set cart values
-
-				// display cart item
-
-				// display the cart - make the view or nav window active
+				this.updateCartValues(cart);
 			});
 		});
 	}
-	showCart(cart) {}
-	setCartValues(cart) {}
+	showCart() {
+		cartOverlay.style.visibility = 'visible';
+		cartContainer.style.visibility = 'visible';
+	}
+	updateCartValues(cart) {
+		// iterate through each item, multiply the qty and price, add to the total
+		let priceContainer = document.querySelector('.total-amount');
+		if (!priceContainer) {
+			// totalPrice.innerText = `$${}`
+			let totalPrice = 0;
+			cart.forEach((item) => {
+				let currQty = 1;
+			});
+		}
+	}
 	populateCart(cart) {}
 	setupApp() {}
 }
 
-// Allow user to modify the data
+// Allow user to modify the data, who is responsible for getting the cart?
 class Cart {
 	addItem(item) {}
 	removeItem(id) {}
@@ -331,21 +371,20 @@ class Cart {
 class Storage {
 	static getItem(id) {
 		let items = JSON.parse(localStorage.getItem('items'));
-		return items.find((item) => item.id == id); // why not triple === vs double ==?
-	}
-
-	static saveItems(items) {
-		localStorage.setItem('items', JSON.stringify(items));
-	}
-
-	static saveCart() {
-		localStorage.setItem('cart', cart);
+		return items.find((item) => item.id == id); // why not triple === vs double ==?  double references values, while triple references types and values
 	}
 	static getCart() {
 		cart = localStorage.getItem('cart');
 	}
+	static saveItems(items) {
+		localStorage.setItem('items', JSON.stringify(items));
+	}
+	static saveCart(cart) {
+		localStorage.setItem('cart', JSON.stringify(cart));
+	}
 	static clearCart() {
 		localStorage.removeItem('cart');
+		cartContent.textContent = '';
 	}
 }
 

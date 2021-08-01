@@ -71,17 +71,18 @@
     </div>
 
     <!-- Cart -->
-    <div class="cart-overlay">
-        <div class="cart">
-            <h2>Cart</h2>
-            <button class="close-btn">
-                <i class="far fa-window-close fa-2x"></i>
-            </button>
-            <div class="cart-content">
-                <!-- Cart Item -->
-                <article class="item-container">
-                    <!-- TODO do i need all these item classes? -->
-                    <div class="item-quantity">
+    <div class="cart">
+        <div class="cart-overlay">
+        </div>
+        <h2>Cart</h2>
+        <button class="close-btn">
+            <i class="far fa-window-close fa-2x"></i>
+        </button>
+        <div class="cart-content">
+            <!-- Cart Item -->
+            <!-- <article class="item-container"> -->
+            <!-- TODO do i need all these item classes? -->
+            <!-- <div class="item-quantity">
                         <button class="increment-item-btn">
                             <i class="fas fa-chevron-up"></i>
                         </button>
@@ -98,9 +99,9 @@
                         <p class="price">$5.75</p>
                     </div>
                 </article>
-                <article class="item-container">
-                    <!-- TODO do i need all these item classes? -->
-                    <div class="item-quantity">
+                <article class="item-container"> -->
+            <!-- TODO do i need all these item classes? -->
+            <!-- <div class="item-quantity">
                         <button class="increment-item-btn">
                             <i class="fas fa-chevron-up"></i>
                         </button>
@@ -116,14 +117,16 @@
                     <div class="item-price">
                         <p class="price">$5.75</p>
                     </div>
-                </article>
-                <!-- End of Cart Item -->
-            </div>
-            <button class="clear-all-btn">Clear Cart</button>
+                </article> -->
+            <!-- End of Cart Item -->
+            <!-- If no items in cart, should be 0 -->
         </div>
-        <!-- End of Cart -->
+        <div class="total-price-container">
+            <h3>Cart Total: <span class="total-amount">$0.00</span></h3>
+        </div>
+        <button class="clear-cart-btn">Clear Cart</button>
     </div>
-
+    <!-- End of Cart -->
 
     <div class="navbar-bottom" id="navbar-bottom">
         <nav class="navbar-social" id="navbar-social">

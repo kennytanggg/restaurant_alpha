@@ -10,7 +10,7 @@
 	--color-secondary: #000;
 	--cart-color-foreground: #404040;
 	/* --cart-color-background: #707070; */
-	--cart-color-background: #fefcfa;
+	--cart-color-background: #f7e7d9;
 	--cart-hover-color: #707070;
 	--background-color-secondary: #d2d2d2;
 	--clearCartColor: #f04e29;
@@ -319,7 +319,7 @@ button:hover {
 	z-index: 15;
 	font-family: 'Jaldi', Arial, Helvetica, sans-serif;
 	border: 3px solid black;
-	/* visibility: hidden; */
+	visibility: hidden;
 }
 
 .cart h2 {
@@ -401,24 +401,22 @@ button:hover {
 	border-color: var(--color-primary);
 }
 
-/* Create an overlay for the main content when the cart is active */
-.cart-active {
-	background: purple;
-	z-index: 20;
-}
-
-.clear-all-btn {
+.clear-cart-btn {
 	height: 35px;
 	width: 40%;
 	background: var(--clearCartColor);
 	border: 1.3px solid var(--clearCartColor);
 	border-radius: 5px;
-	margin-top: 20px;
+	margin-top: 15px;
 	font-size: 1.1rem;
 	color: var(--color-primary);
 	border: 1px solid var(--cart-color-foreground);
 }
 
-.clear-all-btn:hover {
+.clear-cart-btn:hover {
 	border-color: var(--color-primary);
+}
+
+.total-price-container {
+	margin-top: 15px;
 }
