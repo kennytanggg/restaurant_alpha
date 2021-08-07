@@ -37,17 +37,6 @@
 	padding-bottom: 10%;
 }
 
-.somediv {
-	background: red;
-	position: fixed;
-	top: 0;
-	bottom: 0;
-	right: 0;
-	left: 0;
-	z-index: 15;
-	opacity: 70%;
-}
-
 .menu-category {
 	display: grid;
 	/* width: 100%; */

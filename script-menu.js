@@ -25,6 +25,7 @@ closeBtn.addEventListener('click', () => {
 
 clearCartBtn.addEventListener('click', () => {
 	Storage.clearCart();
+	UI.updateCartValues(cart);
 });
 
 const arr_native_words = ['sashimi', 'miso', 'nameko', 'wakame', 'jako', 'negitoro', 'sushi', 'ikura', 'ugo, tokasa'];
@@ -350,7 +351,7 @@ class UI {
 				Storage.saveCart(cart);
 
 				// set cart values
-				this.updateCartValues(cart);
+				UI.updateCartValues(cart);
 			});
 		});
 	}
@@ -358,15 +359,33 @@ class UI {
 		cartOverlay.style.visibility = 'visible';
 		cartContainer.style.visibility = 'visible';
 	}
-	updateCartValues(cart) {
+	static updateCartValues(cart) {
+		//KT: should this be a static method?
 		// iterate through each item, multiply the qty and price, add to the total
 		let priceContainer = document.querySelector('.total-amount');
-		if (!priceContainer) {
-			// totalPrice.innerText = `$${}`
-			let totalPrice = 0;
+		let totalPrice = 0;
+		let totalQtyItems = 0;
+		if (priceContainer) {
 			cart.forEach((item) => {
-				let currQty = 1;
+				totalPrice += item.price * item.quantity;
+				totalQtyItems += item.quantity;
+				priceContainer.innerText = `$${totalPrice.toFixed(2)}`;
 			});
+		}
+
+		console.log(cart, totalPrice, totalQtyItems);
+
+		let orderNavBtn = document.querySelector('.navbar-primary').lastElementChild.lastElementChild.lastElementChild;
+		let orderDiv = document.querySelector('.has-items');
+		if (cart.length > 0) {
+			console.log('hello', orderNavBtn);
+			// orderDiv.style.display = 'auto';
+			orderDiv.style.visibility = 'visible';
+			orderDiv.innerText = totalQtyItems;
+			console.log(orderNavBtn);
+		} else if (cart.length == 0) {
+			orderDiv.style.visibility = 'hidden';
+			priceContainer.innerText = `$${totalPrice.toFixed(2)}`;
 		}
 	}
 	populateCart(cart) {}

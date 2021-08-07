@@ -1,4 +1,4 @@
-/* @import url('https://fonts.googleapis.com/css2?family=Jost&display=swap'); */
+@import url('https://fonts.googleapis.com/css2?family=Jost&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Jaldi&family=Jost&display=swap');
 
 * {
@@ -55,6 +55,7 @@ button:hover {
 	font-size: var(--size-text-primary);
 	text-align: center;
 	height: 100%;
+	position: relative;
 }
 
 .navbar-primary ul li a:link {
@@ -76,6 +77,25 @@ button:hover {
 
 .navbar-primary ul li a:focus {
 	outline: none;
+}
+
+.has-items {
+	color: var(--clearCartColor);
+	background: #fff;
+	position: absolute;
+	border-radius: 50%;
+	top: 3px;
+	right: -15px;
+	font-weight: 300;
+	font-family: 'Jost', Arial, Helvetica, sans-serif;
+	font-size: 0.8rem;
+	letter-spacing: -1.5px;
+	height: 15px;
+	width: 15px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	visibility: hidden;
 }
 
 .restaurant-logo-btn img {
