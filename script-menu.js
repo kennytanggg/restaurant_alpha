@@ -231,8 +231,6 @@ class UI {
 
 		newMenuItem.append(newMenuItemName, newMenuItemDesc, newMenuItemPrice, addToCartBtn);
 
-		const alacartenodes = [...document.querySelectorAll('.carte')];
-
 		// Look thru subheaders, find the sibling div, and append the Item
 		const subheaders = [...document.querySelectorAll('.subheader')];
 		subheaders.forEach((subheader) => {
@@ -246,7 +244,7 @@ class UI {
 	// The button can have a dataset attribute, which can have an ID attached upon its creation
 	// You can use this ID to query the dataset for its info
 	// Add the item to the cart content
-	getBagButtons() {
+	createAddToCartBtns() {
 		const items = [...document.querySelectorAll('.item')];
 		items.forEach((item) => {
 			const addToCartBtn = item.lastChild;
@@ -267,7 +265,6 @@ class UI {
 				// SAVE CART IN LOCALSTORAGE
 				// SET CART VALUES
 				// DISPLAY CART ITEM
-				// SHOWCART
 
 				let inCart = cart.find((menu_item) => {
 					return menu_item.id === cartItem.id;
@@ -279,11 +276,13 @@ class UI {
 
 					let itemContainer = document.createElement('article');
 					itemContainer.classList.add('item-container');
+					itemContainer.id = cartItem.id;
 
 					let itemQtyContainer = document.createElement('div');
 					itemQtyContainer.classList.add('item-quantity');
 					let incBtn = document.createElement('button');
 					incBtn.classList.add('increment-item-btn');
+
 					let incIcon = document.createElement('i');
 					incIcon.classList = 'fas fa-chevron-up';
 					incBtn.append(incIcon);
@@ -291,11 +290,27 @@ class UI {
 					itemQty.classList.add('quantity');
 					itemQty.innerText = cartItem.quantity;
 					itemQty.dataset.id = cartItem.id;
+
+					incBtn.addEventListener('click', () => {
+						cartItem['quantity']++;
+						itemQty.innerText = cartItem['quantity'];
+						UI.updateCartValues(cart);
+						Storage.saveCart(cart);
+					});
+
 					let decBtn = document.createElement('button');
 					decBtn.classList.add('decrement-item-btn');
 					let decIcon = document.createElement('i');
 					decIcon.classList = 'fas fa-chevron-down';
 					decBtn.append(decIcon);
+
+					decBtn.addEventListener('click', () => {
+						cartItem['quantity']--;
+						itemQty.innerText = cartItem['quantity'];
+						UI.updateCartValues(cart);
+						Storage.saveCart(cart);
+					});
+
 					itemQtyContainer.append(incBtn, itemQty, decBtn);
 
 					let descContainer = document.createElement('div');
@@ -307,20 +322,14 @@ class UI {
 					removeBtn.classList.add('remove-item-btn');
 					removeBtn.innerText = 'Remove From Cart';
 					removeBtn.addEventListener('click', () => {
-						if (cartItem.quantity != 1) {
-							cartItem.quantity--;
-							let uiEls = [...document.querySelectorAll('.quantity')];
-							let inCart_ui = uiEls.find((uiEl) => uiEl.getAttribute('data-id') == cartItem.id);
-							inCart_ui.innerText = cartItem.quantity;
-						} else if (cartItem.quantity == 1) {
-							let localCartItemIndex = cart.indexOf(cartItem);
-							if (localCartItemIndex > -1) {
-								cart.splice(localCartItemIndex, 1);
-								Storage.saveCart(cart);
-							}
-
-							itemContainer.remove();
+						let localCartItemIndex = cart.indexOf(cartItem);
+						if (localCartItemIndex > -1) {
+							cart.splice(localCartItemIndex, 1);
+							Storage.saveCart(cart);
 						}
+
+						itemContainer.remove();
+						UI.updateCartValues(cart);
 					});
 					descContainer.append(itemName, removeBtn);
 
@@ -335,9 +344,9 @@ class UI {
 					cartContent.append(itemContainer);
 				} else if (inCart) {
 					// If the item is already in the cart...
-					console.log(inCart);
+					// console.log(inCart);
 
-					console.log('this item already exists in the cart');
+					// console.log('this item already exists in the cart');
 					// Update Cart Quantity
 					inCart.quantity++;
 					// Update UI Quantity
@@ -370,35 +379,58 @@ class UI {
 				totalPrice += item.price * item.quantity;
 				totalQtyItems += item.quantity;
 				priceContainer.innerText = `$${totalPrice.toFixed(2)}`;
+
+				if (item.quantity == 0) {
+					console.log('no moreof this elemen');
+					// Remove item from Cart (data)
+					let index = cart.indexOf(item);
+					cart.splice(index, 1);
+
+					// Remove item from the Cart Visually
+					let itemElement = document.getElementById(item.id).remove();
+
+					//#region
+					// Option 2 (without inserting id)
+					// let elementArr = document.querySelectorAll(`[data-id='${item.id}']`);
+					// let elementArr = document.querySelectorAll('.quantity');
+					// elementArr.forEach((arrItem) => {
+					// 	if (arrItem.id == item.id) {
+					// 		console.log(arrItem.parentElement);
+					// 		// console.log(arrItem.parentElement.parentElement);
+					// 		// arrItem.parentElement.parentElement.remove();
+					// 	}
+					// });
+					//#endregion
+				}
 			});
 		}
 
-		console.log(cart, totalPrice, totalQtyItems);
-
-		let orderNavBtn = document.querySelector('.navbar-primary').lastElementChild.lastElementChild.lastElementChild;
-		let orderDiv = document.querySelector('.has-items');
+		let orderDiv = document.querySelector('.total-items-qty');
 		if (cart.length > 0) {
-			console.log('hello', orderNavBtn);
 			// orderDiv.style.display = 'auto';
 			orderDiv.style.visibility = 'visible';
 			orderDiv.innerText = totalQtyItems;
-			console.log(orderNavBtn);
 		} else if (cart.length == 0) {
+			console.log('hello', cart);
 			orderDiv.style.visibility = 'hidden';
 			priceContainer.innerText = `$${totalPrice.toFixed(2)}`;
 		}
+
+		Storage.saveCart(cart);
 	}
-	populateCart(cart) {}
-	setupApp() {}
+	setupApp() {
+		cart = getCart();
+	}
 }
 
+// KT: Is this class needed?
 // Allow user to modify the data, who is responsible for getting the cart?
-class Cart {
-	addItem(item) {}
-	removeItem(id) {}
-	incrementItem(item) {}
-	decrementItem(item) {}
-}
+// class Cart {
+// 	addItem(item) {}
+// 	removeItem(id) {}
+// 	incrementItem(item) {}
+// 	decrementItem(item) {}
+// }
 
 // Persist the data
 class Storage {
@@ -435,11 +467,6 @@ document.addEventListener('DOMContentLoaded', () => {
 		})
 		.then(() => {
 			// wow this line was cool
-			ui.getBagButtons();
+			ui.createAddToCartBtns();
 		});
-
-	// ui.getBagButtons();
-	// add an event listener on each item
-	// create a buttom and give it a class
-	// use CSS to style that button
 });
