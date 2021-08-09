@@ -13,21 +13,6 @@ const cartContent = document.querySelector('.cart-content');
 
 let cart = [];
 
-orderBtn.addEventListener('click', () => {
-	cartOverlay.style.visibility = 'visible';
-	cartContainer.style.visibility = 'visible';
-});
-
-closeBtn.addEventListener('click', () => {
-	cartOverlay.style.visibility = 'hidden';
-	cartContainer.style.visibility = 'hidden';
-});
-
-clearCartBtn.addEventListener('click', () => {
-	Storage.clearCart();
-	UI.updateCartValues(cart);
-});
-
 const arr_native_words = ['sashimi', 'miso', 'nameko', 'wakame', 'jako', 'negitoro', 'sushi', 'ikura', 'ugo, tokasa'];
 let arr_subheaders = [];
 let buttonsDOM = [];
@@ -255,120 +240,149 @@ class UI {
 				addToCartBtn.classList.remove('active');
 			});
 			addToCartBtn.addEventListener('click', () => {
-				let cartItem = Storage.getItem(addToCartBtn.dataset.id);
-				// cartOverlay.style.visibility = 'visible';
-				// cartContainer.style.visibility = 'visible'; // I want the user to see the quantity updated, but be able to continue adding items to the cart
-
-				// REFERENCE
-				// GET PRODUCT FROM PRODUCTS
-				// ADD PRODUCT TO CART
-				// SAVE CART IN LOCALSTORAGE
-				// SET CART VALUES
-				// DISPLAY CART ITEM
-
-				let inCart = cart.find((menu_item) => {
-					return menu_item.id === cartItem.id;
-				});
-
-				if (!inCart) {
-					cartItem['quantity'] = Number('1');
-					cart.push(cartItem);
-
-					let itemContainer = document.createElement('article');
-					itemContainer.classList.add('item-container');
-					itemContainer.id = cartItem.id;
-
-					let itemQtyContainer = document.createElement('div');
-					itemQtyContainer.classList.add('item-quantity');
-					let incBtn = document.createElement('button');
-					incBtn.classList.add('increment-item-btn');
-
-					let incIcon = document.createElement('i');
-					incIcon.classList = 'fas fa-chevron-up';
-					incBtn.append(incIcon);
-					let itemQty = document.createElement('p');
-					itemQty.classList.add('quantity');
-					itemQty.innerText = cartItem.quantity;
-					itemQty.dataset.id = cartItem.id;
-
-					incBtn.addEventListener('click', () => {
-						cartItem['quantity']++;
-						itemQty.innerText = cartItem['quantity'];
-						UI.updateCartValues(cart);
-						Storage.saveCart(cart);
-					});
-
-					let decBtn = document.createElement('button');
-					decBtn.classList.add('decrement-item-btn');
-					let decIcon = document.createElement('i');
-					decIcon.classList = 'fas fa-chevron-down';
-					decBtn.append(decIcon);
-
-					decBtn.addEventListener('click', () => {
-						cartItem['quantity']--;
-						itemQty.innerText = cartItem['quantity'];
-						UI.updateCartValues(cart);
-						Storage.saveCart(cart);
-					});
-
-					itemQtyContainer.append(incBtn, itemQty, decBtn);
-
-					let descContainer = document.createElement('div');
-					descContainer.classList.add('item-description');
-					let itemName = document.createElement('p');
-					itemName.classList.add('item-name');
-					itemName.innerText = cartItem.name;
-					let removeBtn = document.createElement('button');
-					removeBtn.classList.add('remove-item-btn');
-					removeBtn.innerText = 'Remove From Cart';
-					removeBtn.addEventListener('click', () => {
-						let localCartItemIndex = cart.indexOf(cartItem);
-						if (localCartItemIndex > -1) {
-							cart.splice(localCartItemIndex, 1);
-							Storage.saveCart(cart);
-						}
-
-						itemContainer.remove();
-						UI.updateCartValues(cart);
-					});
-					descContainer.append(itemName, removeBtn);
-
-					let priceContainer = document.createElement('div');
-					priceContainer.classList.add('item-price');
-					let price = document.createElement('p');
-					price.classList.add('price');
-					price.innerText = `$${cartItem.price.toFixed(2)}`;
-					priceContainer.append(price);
-
-					itemContainer.append(itemQtyContainer, descContainer, priceContainer);
-					cartContent.append(itemContainer);
-				} else if (inCart) {
-					// If the item is already in the cart...
-					// console.log(inCart);
-
-					// console.log('this item already exists in the cart');
-					// Update Cart Quantity
-					inCart.quantity++;
-					// Update UI Quantity
-					let uiEls = [...document.querySelectorAll('.quantity')];
-					let inCart_ui = uiEls.find((uiEl) => uiEl.getAttribute('data-id') == inCart.id);
-					inCart_ui.innerText = inCart.quantity;
-				}
-
-				// save cart in local storage
-				// console.log(cart);
-				Storage.saveCart(cart);
-
-				// set cart values
-				UI.updateCartValues(cart);
+				this.addItemToCart(addToCartBtn.dataset.id);
 			});
 		});
 	}
+
+	addOrderFunctionality() {
+		orderBtn.addEventListener('click', () => {
+			cartOverlay.style.visibility = 'visible';
+			cartContainer.style.visibility = 'visible';
+		});
+
+		closeBtn.addEventListener('click', () => {
+			cartOverlay.style.visibility = 'hidden';
+			cartContainer.style.visibility = 'hidden';
+		});
+
+		clearCartBtn.addEventListener('click', () => {
+			Storage.clearCart();
+			this.updateCartValues(cart); // This is what's causing me to use a static method
+		});
+	}
+
+	addItemToCart(id) {
+		// console.log(id);
+		let inCart = cart.find((menu_item) => {
+			return menu_item.id == id;
+		});
+		// console.log(inCart);
+
+		let isInStartup = inCart && cartContent.childElementCount == 0;
+		if (!inCart) {
+			// REFERENCE
+			// GET PRODUCT FROM PRODUCTS
+			// ADD PRODUCT TO CART
+			// SAVE CART IN LOCALSTORAGE
+			// SET CART VALUES
+			// DISPLAY CART ITEM
+			console.log(inCart, 'not in the cart');
+			let cartItem = Storage.getItem(id);
+			console.log(cartItem);
+
+			// Add Attribute for quantity
+			cartItem['quantity'] = Number('1');
+			cart.push(cartItem);
+
+			// Create wrapper class
+			let itemContainer = document.createElement('article');
+			itemContainer.classList.add('item-container');
+			itemContainer.id = cartItem.id;
+
+			let itemQtyContainer = document.createElement('div');
+			itemQtyContainer.classList.add('item-quantity');
+			let incBtn = document.createElement('button');
+			incBtn.classList.add('increment-item-btn');
+
+			let incIcon = document.createElement('i');
+			incIcon.classList = 'fas fa-chevron-up';
+			incBtn.append(incIcon);
+			let itemQty = document.createElement('p');
+			itemQty.classList.add('quantity');
+			itemQty.innerText = cartItem.quantity;
+			itemQty.dataset.id = cartItem.id;
+
+			incBtn.addEventListener('click', () => {
+				cartItem['quantity']++;
+				itemQty.innerText = cartItem['quantity'];
+				this.updateCartValues(cart);
+				Storage.saveCart(cart);
+			});
+
+			let decBtn = document.createElement('button');
+			decBtn.classList.add('decrement-item-btn');
+			let decIcon = document.createElement('i');
+			decIcon.classList = 'fas fa-chevron-down';
+			decBtn.append(decIcon);
+
+			decBtn.addEventListener('click', () => {
+				cartItem['quantity']--;
+				itemQty.innerText = cartItem['quantity'];
+				this.updateCartValues(cart);
+				Storage.saveCart(cart);
+			});
+
+			itemQtyContainer.append(incBtn, itemQty, decBtn);
+
+			let descContainer = document.createElement('div');
+			descContainer.classList.add('item-description');
+			let itemName = document.createElement('p');
+			itemName.classList.add('item-name');
+			itemName.innerText = cartItem.name;
+			let removeBtn = document.createElement('button');
+			removeBtn.classList.add('remove-item-btn');
+			removeBtn.innerText = 'Remove From Cart';
+			removeBtn.addEventListener('click', () => {
+				let localCartItemIndex = cart.indexOf(cartItem);
+				if (localCartItemIndex > -1) {
+					cart.splice(localCartItemIndex, 1);
+					Storage.saveCart(cart);
+				}
+
+				itemContainer.remove();
+				this.updateCartValues(cart);
+			});
+			descContainer.append(itemName, removeBtn);
+
+			let priceContainer = document.createElement('div');
+			priceContainer.classList.add('item-price');
+			let price = document.createElement('p');
+			price.classList.add('price');
+			price.innerText = `$${cartItem.price.toFixed(2)}`;
+			priceContainer.append(price);
+
+			itemContainer.append(itemQtyContainer, descContainer, priceContainer);
+			cartContent.append(itemContainer);
+			// save cart in local storage
+			// console.log(cart);
+		} else if (inCart) {
+			console.log(inCart, 'already in the cart');
+			// If the item is already in the cart...
+			// Update Cart Quantity
+			inCart.quantity++;
+			// // Update UI Quantity
+			let uiEls = [...document.querySelectorAll('.quantity')];
+			console.log(uiEls);
+			let inCart_ui = uiEls.find((uiEl) => uiEl.getAttribute('data-id') == inCart.id);
+			console.log(inCart_ui);
+			inCart_ui.innerText = inCart.quantity;
+		}
+		Storage.saveCart(cart);
+
+		// set cart values
+		this.updateCartValues(cart);
+	}
+
 	showCart() {
 		cartOverlay.style.visibility = 'visible';
 		cartContainer.style.visibility = 'visible';
 	}
-	static updateCartValues(cart) {
+	hideCart() {
+		cartOverlay.style.visibility = 'hidden';
+		cartContainer.style.visibility = 'hidden';
+	}
+	updateCartValues(cart) {
 		//KT: should this be a static method?
 		// iterate through each item, multiply the qty and price, add to the total
 		let priceContainer = document.querySelector('.total-amount');
@@ -411,15 +425,24 @@ class UI {
 			orderDiv.style.visibility = 'visible';
 			orderDiv.innerText = totalQtyItems;
 		} else if (cart.length == 0) {
-			console.log('hello', cart);
 			orderDiv.style.visibility = 'hidden';
 			priceContainer.innerText = `$${totalPrice.toFixed(2)}`;
 		}
 
 		Storage.saveCart(cart);
 	}
+
+	populateCart(cart) {
+		cart.forEach((item) => {
+			this.addItemToCart(item.id);
+		});
+	}
+
 	setupApp() {
-		cart = getCart();
+		cart = Storage.getCart();
+		this.updateCartValues(cart);
+		this.populateCart(cart);
+		this.addOrderFunctionality();
 	}
 }
 
@@ -435,11 +458,12 @@ class UI {
 // Persist the data
 class Storage {
 	static getItem(id) {
+		console.log(id);
 		let items = JSON.parse(localStorage.getItem('items'));
 		return items.find((item) => item.id == id); // why not triple === vs double ==?  double references values, while triple references types and values
 	}
 	static getCart() {
-		cart = localStorage.getItem('cart');
+		return localStorage.getItem('cart') ? JSON.parse(localStorage.getItem('cart')) : [];
 	}
 	static saveItems(items) {
 		localStorage.setItem('items', JSON.stringify(items));
@@ -458,7 +482,10 @@ document.addEventListener('DOMContentLoaded', () => {
 	const ui = new UI();
 	const order = new Order();
 
-	// When do i have access to the elements on the page, now, or later?
+	// Setup App
+	ui.setupApp();
+
+	// Get all items
 	order
 		.getItems()
 		.then((data) => {
