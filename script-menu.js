@@ -263,21 +263,20 @@ class UI {
 	}
 
 	addItemToCart(id) {
-		// console.log(id);
-		let inCart = cart.find((menu_item) => {
+		console.log(id);
+		let existingCartItem = cart.find((menu_item) => {
 			return menu_item.id == id;
 		});
-		// console.log(inCart);
-
-		let isInStartup = inCart && cartContent.childElementCount == 0;
-		if (!inCart) {
+		console.log(existingCartItem);
+		let isInStartup = existingCartItem && !document.getElementById(id);
+		if (!existingCartItem) {
 			// REFERENCE
 			// GET PRODUCT FROM PRODUCTS
 			// ADD PRODUCT TO CART
+			// DISPLAY CART ITEM
 			// SAVE CART IN LOCALSTORAGE
 			// SET CART VALUES
-			// DISPLAY CART ITEM
-			console.log(inCart, 'not in the cart');
+			console.log(existingCartItem, 'the item is not in the cart');
 			let cartItem = Storage.getItem(id);
 			console.log(cartItem);
 
@@ -354,19 +353,89 @@ class UI {
 
 			itemContainer.append(itemQtyContainer, descContainer, priceContainer);
 			cartContent.append(itemContainer);
-			// save cart in local storage
-			// console.log(cart);
-		} else if (inCart) {
-			console.log(inCart, 'already in the cart');
+		} else if (existingCartItem && isInStartup == false) {
+			console.log(existingCartItem, isInStartup, 'the item is already in the cart');
 			// If the item is already in the cart...
 			// Update Cart Quantity
-			inCart.quantity++;
+			existingCartItem.quantity++;
 			// // Update UI Quantity
 			let uiEls = [...document.querySelectorAll('.quantity')];
 			console.log(uiEls);
-			let inCart_ui = uiEls.find((uiEl) => uiEl.getAttribute('data-id') == inCart.id);
+			let inCart_ui = uiEls.find((uiEl) => uiEl.getAttribute('data-id') == existingCartItem.id);
 			console.log(inCart_ui);
-			inCart_ui.innerText = inCart.quantity;
+			inCart_ui.innerText = existingCartItem.quantity;
+		} else if (existingCartItem && isInStartup == true) {
+			console.log(existingCartItem, 'the item is already in the cart, and the app is in startup');
+
+			// Create wrapper class
+			let itemContainer = document.createElement('article');
+			itemContainer.classList.add('item-container');
+			itemContainer.id = existingCartItem.id;
+
+			let itemQtyContainer = document.createElement('div');
+			itemQtyContainer.classList.add('item-quantity');
+			let incBtn = document.createElement('button');
+			incBtn.classList.add('increment-item-btn');
+
+			let incIcon = document.createElement('i');
+			incIcon.classList = 'fas fa-chevron-up';
+			incBtn.append(incIcon);
+			let itemQty = document.createElement('p');
+			itemQty.classList.add('quantity');
+			itemQty.innerText = existingCartItem.quantity;
+			itemQty.dataset.id = existingCartItem.id;
+
+			incBtn.addEventListener('click', () => {
+				existingCartItem['quantity']++;
+				itemQty.innerText = existingCartItem['quantity'];
+				this.updateCartValues(cart);
+				Storage.saveCart(cart);
+			});
+
+			let decBtn = document.createElement('button');
+			decBtn.classList.add('decrement-item-btn');
+			let decIcon = document.createElement('i');
+			decIcon.classList = 'fas fa-chevron-down';
+			decBtn.append(decIcon);
+
+			decBtn.addEventListener('click', () => {
+				existingCartItem['quantity']--;
+				itemQty.innerText = existingCartItem['quantity'];
+				this.updateCartValues(cart);
+				Storage.saveCart(cart);
+			});
+
+			itemQtyContainer.append(incBtn, itemQty, decBtn);
+
+			let descContainer = document.createElement('div');
+			descContainer.classList.add('item-description');
+			let itemName = document.createElement('p');
+			itemName.classList.add('item-name');
+			itemName.innerText = existingCartItem.name;
+			let removeBtn = document.createElement('button');
+			removeBtn.classList.add('remove-item-btn');
+			removeBtn.innerText = 'Remove From Cart';
+			removeBtn.addEventListener('click', () => {
+				let localCartItemIndex = cart.indexOf(existingCartItem);
+				if (localCartItemIndex > -1) {
+					cart.splice(localCartItemIndex, 1);
+					Storage.saveCart(cart);
+				}
+
+				itemContainer.remove();
+				this.updateCartValues(cart);
+			});
+			descContainer.append(itemName, removeBtn);
+
+			let priceContainer = document.createElement('div');
+			priceContainer.classList.add('item-price');
+			let price = document.createElement('p');
+			price.classList.add('price');
+			price.innerText = `$${existingCartItem.price.toFixed(2)}`;
+			priceContainer.append(price);
+
+			itemContainer.append(itemQtyContainer, descContainer, priceContainer);
+			cartContent.append(itemContainer);
 		}
 		Storage.saveCart(cart);
 
@@ -458,7 +527,6 @@ class UI {
 // Persist the data
 class Storage {
 	static getItem(id) {
-		console.log(id);
 		let items = JSON.parse(localStorage.getItem('items'));
 		return items.find((item) => item.id == id); // why not triple === vs double ==?  double references values, while triple references types and values
 	}
