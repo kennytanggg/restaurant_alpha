@@ -12,16 +12,6 @@ const cartContainer = document.querySelector('.cart');
 
 let cart = [];
 
-orderBtn.addEventListener('click', () => {
-	cartOverlay.style.visibility = 'visible';
-	cartContainer.style.visibility = 'visible';
-});
-
-closeBtn.addEventListener('click', () => {
-	cartOverlay.style.visibility = 'hidden';
-	cartContainer.style.visibility = 'hidden';
-});
-
 // KT: I wanted to simulate getting images from somewhere else, not the local machine.
 let arr_imgs = [];
 const img1 =
@@ -40,7 +30,6 @@ const img6 =
 
 arr_imgs.push(img1, img2, img3, img4, img5, img6);
 
-// get all images and put them in primary content
 let cards = document.createElement('div');
 cards.id = 'cards';
 cards.className = 'cards';
@@ -79,13 +68,12 @@ function createCards() {
 	//#endregion
 }
 
-// initialization variables
 let index = 0;
 let prevCard = document.getElementById(`card-${index}`);
 let nextCard = document.getElementById(`card-${index}`);
 let size;
 
-function cycleCards() {
+function cycleCards(duration) {
 	setInterval(() => {
 		// There are 2 cases which cause the cycling to not look smooth
 		if (index < arr_imgs.length - 1) {
@@ -105,14 +93,14 @@ function cycleCards() {
 				inline: 'nearest',
 			});
 		}
-	}, 3500);
+	}, duration);
 }
 
 createCards();
 contentPrimary.appendChild(cards);
 const firstCard = document.getElementById('card-0');
 const lastCard = document.getElementById(`card-${arr_imgs.length - 1}`);
-cycleCards(); //KT: To fix - how to smooth out the edge cases?
+cycleCards(00); //KT: To fix - how to smooth out the edge cases?
 
 // Event Listeners
 prevBtn.addEventListener('click', () => {
@@ -199,20 +187,40 @@ nextBtn.addEventListener('click', () => {
 // });
 
 downBtn.addEventListener('click', () => {
-	contentSecondary.scrollIntoView({
-		behavior: 'smooth',
-		block: 'end',
-		inline: 'nearest',
-	});
+	document.querySelector('.content-secondary').scrollIntoView();
 });
 
 //Make the navigation buttons disappear if the user has scrolled past a certain point
 document.addEventListener('scroll', () => {
-	if (document.documentElement.scrollTop > window.innerWidth / 2) {
+	if (document.documentElement.scrollTop > window.innerHeight / 2) {
 		nextBtn.style.display = 'none';
 		prevBtn.style.display = 'none';
+		downBtn.style.display = 'none';
 	} else {
 		nextBtn.style.display = 'inline';
 		prevBtn.style.display = 'inline';
+		downBtn.style.display = 'inline';
 	}
+});
+
+orderBtn.addEventListener('click', () => {
+	console.log(cartOverlay.getBoundingClientRect().left);
+	cartOverlay.style.transform = 'translateX(calc(-1540px)';
+	cartContainer.style.transform = 'translateX(00px)';
+	console.log(cartOverlay.getBoundingClientRect().left);
+	cartOverlay.style.zIndex = '15';
+	cartContainer.style.zIndex = '15';
+	console.log(cartOverlay.style.zIndex);
+	console.log(cartContainer.style.zIndex);
+	// cartOverlay.style.visibility = 'visible';
+	// cartContainer.style.visibility = 'visible';
+});
+
+closeBtn.addEventListener('click', () => {
+	cartOverlay.style.transform = 'translateX(-3600px)';
+	cartContainer.style.transform = 'translateX(400px)';
+	cartOverlay.style.zIndex = '-1';
+	cartContainer.style.zIndex = '-1';
+	// cartOverlay.style.visibility = 'hidden';
+	// cartContainer.style.visibility = 'hidden';
 });

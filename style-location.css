@@ -129,8 +129,6 @@
 	position: fixed;
 	top: calc(50vh - 35px);
 	right: 3%;
-	opacity: 0.7;
-	/* transform: rotate(90deg); */
 	z-index: 10;
 	background: transparent;
 	color: white;

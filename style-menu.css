@@ -151,3 +151,12 @@
 	opacity: 1;
 	visibility: visible;
 }
+
+@keyframes slideFromRight {
+	from {
+		opacity: 0;
+	}
+	to {
+		opacity: 1;
+	}
+}

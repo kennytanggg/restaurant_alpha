@@ -247,13 +247,25 @@ class UI {
 
 	addOrderFunctionality() {
 		orderBtn.addEventListener('click', () => {
-			cartOverlay.style.visibility = 'visible';
-			cartContainer.style.visibility = 'visible';
+			console.log(cartOverlay.getBoundingClientRect().left);
+			cartOverlay.style.transform = 'translateX(calc(-1540px)';
+			cartContainer.style.transform = 'translateX(00px)';
+			console.log(cartOverlay.getBoundingClientRect().left);
+			cartOverlay.style.zIndex = '15';
+			cartContainer.style.zIndex = '15';
+			console.log(cartOverlay.style.zIndex);
+			console.log(cartContainer.style.zIndex);
+			// cartOverlay.style.visibility = 'visible';
+			// cartContainer.style.visibility = 'visible';
 		});
 
 		closeBtn.addEventListener('click', () => {
-			cartOverlay.style.visibility = 'hidden';
-			cartContainer.style.visibility = 'hidden';
+			cartOverlay.style.transform = 'translateX(-3600px)';
+			cartContainer.style.transform = 'translateX(400px)';
+			cartOverlay.style.zIndex = '-1';
+			cartContainer.style.zIndex = '-1';
+			// cartOverlay.style.visibility = 'hidden';
+			// cartContainer.style.visibility = 'hidden';
 		});
 
 		clearCartBtn.addEventListener('click', () => {

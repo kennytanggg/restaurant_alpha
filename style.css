@@ -17,6 +17,7 @@
 	--removeItemColor: #ec9292;
 	--size-text-primary: 1.5rem;
 	--nav-page-padding: 15px;
+	--mainTransition: all 0.3s linear;
 }
 
 button {
@@ -26,6 +27,10 @@ button {
 
 button:hover {
 	cursor: pointer;
+}
+
+button:active {
+	outline: none;
 }
 
 .navbar-primary {
@@ -99,8 +104,6 @@ button:hover {
 }
 
 .restaurant-logo-btn img {
-	height: 70px;
-	width: 70px;
 	position: absolute;
 	top: 15%;
 	left: 2%;
@@ -173,6 +176,7 @@ button:hover {
 	color: var(--color-primary);
 	opacity: 0.7;
 	cursor: pointer;
+	animation: fadeIn 3s;
 }
 
 .next-button {
@@ -185,6 +189,7 @@ button:hover {
 	background: transparent;
 	color: var(--color-primary);
 	cursor: pointer;
+	animation: fadeIn 3s;
 }
 
 .down-button {
@@ -197,6 +202,7 @@ button:hover {
 	background: transparent;
 	color: var(--color-primary);
 	cursor: pointer;
+	animation: fadeIn 3s;
 }
 
 .content-secondary {
@@ -216,6 +222,11 @@ button:hover {
 .restaurant-projection {
 	display: flex;
 	justify-content: center;
+	background: url(img/SushiHouseExpandingPromo.png);
+	background-size: contain;
+	background-repeat: no-repeat;
+	background-position: center center;
+	height: 100vh;
 }
 
 .nav-plugs {
@@ -310,16 +321,16 @@ button:hover {
 .cart-overlay {
 	position: fixed;
 	top: 0;
-	right: 0;
+	left: 0;
 	background: transparent;
-	transition: ease-in; /* fix */
 	background: var(--removeItemColor);
 	opacity: 70%;
-	width: 100%;
-	height: 100%;
-	z-index: 11;
-	visibility: hidden;
-	transform: translateX(-400px);
+	width: 100vw;
+	height: 100vh;
+	z-index: -1;
+	transform: translateX(-3600px);
+	transition-property: transform;
+	transition-duration: 1s;
 }
 
 .cart {
@@ -332,14 +343,15 @@ button:hover {
 	height: 100vh;
 	background: var(--cart-color-background);
 	opacity: 1;
-	/* transform: translateX(-400px); */
+	transform: translateX(400px);
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	z-index: 15;
+	z-index: -1;
 	font-family: 'Jaldi', Arial, Helvetica, sans-serif;
 	border: 3px solid black;
-	visibility: hidden;
+	transition-property: transform;
+	transition-duration: 1s;
 }
 
 .cart h2 {
@@ -440,3 +452,21 @@ button:hover {
 .total-price-container {
 	margin-top: 15px;
 }
+
+@keyframes fadeIn {
+	from {
+		opacity: 0;
+	}
+	to {
+		opacity: 0.7;
+	}
+}
+/* 
+@keyframes slideFromRight {
+	from {
+		opacity: 0;
+	}
+	to {
+		opacity: 1;
+	}
+} */
