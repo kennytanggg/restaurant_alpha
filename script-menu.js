@@ -248,7 +248,7 @@ class UI {
 	addOrderFunctionality() {
 		orderBtn.addEventListener('click', () => {
 			console.log(cartOverlay.getBoundingClientRect().left);
-			cartOverlay.style.transform = 'translateX(calc(-1540px)';
+			cartOverlay.style.transform = 'translateX(calc(-1485px))'; //This should be in VW or %
 			cartContainer.style.transform = 'translateX(00px)';
 			console.log(cartOverlay.getBoundingClientRect().left);
 			cartOverlay.style.zIndex = '15';

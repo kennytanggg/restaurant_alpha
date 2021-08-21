@@ -3,6 +3,7 @@ const location_card = document.getElementById('location-card');
 const url = 'https://developers.zomato.com/api/v2.1/reviews?res_id=16781875&start=1&count=5';
 const userKey = 'd477e4b5e5c20788dada4c06d202a840';
 const res_id = '17788817';
+const navbarPrimary = document.getElementById('navbar-primary');
 const orderBtn = navbarPrimary.lastElementChild.lastElementChild.lastElementChild;
 
 const restaurant = fetch(url, {

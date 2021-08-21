@@ -100,7 +100,7 @@ createCards();
 contentPrimary.appendChild(cards);
 const firstCard = document.getElementById('card-0');
 const lastCard = document.getElementById(`card-${arr_imgs.length - 1}`);
-cycleCards(00); //KT: To fix - how to smooth out the edge cases?
+cycleCards(3000); //KT: To fix - how to smooth out the edge cases?
 
 // Event Listeners
 prevBtn.addEventListener('click', () => {
