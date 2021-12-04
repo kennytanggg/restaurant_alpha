@@ -248,7 +248,7 @@ class UI {
 	addOrderFunctionality() {
 		orderBtn.addEventListener('click', () => {
 			console.log(cartOverlay.getBoundingClientRect().left);
-			cartOverlay.style.transform = 'translateX(calc(-1485px))'; //This should be in VW or %
+			cartOverlay.style.transform = 'translateX(-100vw)'; //This should be in VW or %
 			cartContainer.style.transform = 'translateX(00px)';
 			console.log(cartOverlay.getBoundingClientRect().left);
 			cartOverlay.style.zIndex = '15';
@@ -260,7 +260,7 @@ class UI {
 		});
 
 		closeBtn.addEventListener('click', () => {
-			cartOverlay.style.transform = 'translateX(-3600px)';
+			cartOverlay.style.transform = 'translateX(-200vw)';
 			cartContainer.style.transform = 'translateX(400px)';
 			cartOverlay.style.zIndex = '-1';
 			cartContainer.style.zIndex = '-1';

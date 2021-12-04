@@ -328,14 +328,14 @@ button:active {
 	width: 100vw;
 	height: 100vh;
 	z-index: -1;
-	transform: translateX(-3600px);
+	transform: translateX(-200vw);
 	transition-property: transform;
 	transition-duration: 1s;
 }
 
 .cart {
 	position: absolute;
-	top: 0;
+	top: 1.1%;
 	right: 0%;
 	min-width: 400px;
 	max-width: 400px;
