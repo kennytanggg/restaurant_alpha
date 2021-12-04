@@ -36,20 +36,6 @@
 			"price": 5.25
 		},
 		{
-			"id": 6,
-			"name": "Aka Miso",
-			"description": "red miso with nameko mushroom",
-			"price": 8.75,
-			"category": "Omakase"
-		},
-		{
-			"id": 7,
-			"name": "Kaisou",
-			"description": "ugo, tokasa and wakame of seaweed with sesame dressing",
-			"price": 9.5,
-			"category": "Omakase"
-		},
-		{
 			"id": 8,
 			"name": "Omakase Sashimi 18",
 			"description": "selected by the chef - presented with 18 varieties of sushi (no sashimi) and a half roll. For Sushi Yasuo's traditional market price omakase option, please call (555) 555-5555",

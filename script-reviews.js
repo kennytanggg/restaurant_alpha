@@ -4,6 +4,7 @@ const url = 'https://developers.zomato.com/api/v2.1/reviews?res_id=16781875&star
 const userKey = 'd477e4b5e5c20788dada4c06d202a840';
 const res_id = '17788817';
 const navbarPrimary = document.getElementById('navbar-primary');
+const closeBtn = document.querySelector('.close-btn');
 const orderBtn = navbarPrimary.lastElementChild.lastElementChild.lastElementChild;
 
 const restaurant = fetch(url, {
@@ -17,11 +18,17 @@ const restaurant = fetch(url, {
 		return response.json();
 	})
 	.then((data) => {
-		let reviews = data.user_reviews;
-		reviews.forEach((review, index) => {
-			const review_card = createReview(review.review, index);
-			document.querySelector('.cards').appendChild(review_card);
-		});
+		try {
+			if (data) {
+				let reviews = data.user_reviews;
+				reviews.forEach((review, index) => {
+					const review_card = createReview(review.review, index);
+					document.querySelector('.cards').appendChild(review_card);
+				});
+			}
+		} catch (error) {
+			console.log('something went wrong with accessing data from the server/Zomato API');
+		}
 	});
 
 function createReview(review, index) {
