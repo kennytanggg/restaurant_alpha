@@ -335,7 +335,7 @@ button:active {
 
 .cart {
 	position: absolute;
-	top: 1.1%;
+	top: 0;
 	right: 0%;
 	min-width: 400px;
 	max-width: 400px;
