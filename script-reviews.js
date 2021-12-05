@@ -1,13 +1,12 @@
-const location_card = document.getElementById('location-card');
-
-const url = 'https://developers.zomato.com/api/v2.1/reviews?res_id=16781875&start=1&count=5';
+const url = 'https://developers.zomato.com/api/v2.1/restaurant?res_id=';
+// const url = 'https://developers.zomato.com/api/v2.1/reviews?res_id=16781875&start=1&count=5';
 const userKey = 'd477e4b5e5c20788dada4c06d202a840';
-const res_id = '17788817';
+const res_id = '17788817'; //Ani Ramen - 17788817, Ippudo - 16781875
 const navbarPrimary = document.getElementById('navbar-primary');
 const closeBtn = document.querySelector('.close-btn');
 const orderBtn = navbarPrimary.lastElementChild.lastElementChild.lastElementChild;
 
-const restaurant = fetch(url, {
+const restaurant = fetch(`${url}${res_id}`, {
 	headers: {
 		Accept: 'application/json',
 		'User-Key': 'd477e4b5e5c20788dada4c06d202a840',
@@ -18,32 +17,48 @@ const restaurant = fetch(url, {
 		return response.json();
 	})
 	.then((data) => {
+		console.log(data.user_rating);
 		try {
 			if (data) {
-				let reviews = data.user_reviews;
-				reviews.forEach((review, index) => {
-					const review_card = createReview(review.review, index);
-					document.querySelector('.cards').appendChild(review_card);
-				});
+				let rating = data.user_rating;
+				createRating(rating, data);
+
+				// let reviews = data.all_reviews.reviews;
+				// reviews.forEach((review, index) => {
+				// 	const review_card = createReview(review.review, index);
+				// 	document.querySelector('.cards').appendChild(review_card);
+				// });
 			}
 		} catch (error) {
+			console.log(error);
 			console.log('something went wrong with accessing data from the server/Zomato API');
 		}
 	});
 
-function createReview(review, index) {
-	console.log(review);
-	const review_card = document.createElement('div');
-	review_card.className = `card ${index}`;
-	review_card.innerHTML = `
-        <p><u>Author</u>: ${review.user.name}</p>
-        <p><u>Rating</u>: ${review.rating}</p>
-        <p><u>Review</u>: ${review.rating_text}</p>
-        <p><u>Likes</u>: ${review.likes}</p>
-        <p>${review.review_time_friendly}</p>
+function createRating(rating, data) {
+	const rating_card = document.createElement('div');
+	rating_card.className = 'rating';
+	rating_card.innerHTML = `
+        <h1>${data.name}</h1>
+        <p><u>Rating</u>: ${rating.aggregate_rating}</p>
+        <p><u>Review</u>: ${rating.rating_text}</p>
+        <p><u>votes</u>: ${rating.votes}</p>
     `;
-	return review_card;
+	document.querySelector('.cards').appendChild(rating_card);
 }
+
+// function createReview(review, index) {
+// 	const review_card = document.createElement('div');
+// 	review_card.className = `card ${index}`;
+// 	review_card.innerHTML = `
+//         <p><u>Author</u>: ${review.user.name}</p>
+//         <p><u>Rating</u>: ${review.rating}</p>
+//         <p><u>Review</u>: ${review.rating_text}</p>
+//         <p><u>Likes</u>: ${review.likes}</p>
+//         <p>${review.review_time_friendly}</p>
+//     `;
+// 	return review_card;
+// }
 
 orderBtn.addEventListener('click', () => {
 	console.log(cartOverlay.getBoundingClientRect().left);

@@ -91,8 +91,8 @@
 
 .cards {
 	display: grid;
-	grid-template-columns: repeat(3, 1fr);
-	grid-template-rows: repeat(2, 1fr);
+	/* grid-template-columns: repeat(3, 1fr); */
+	/* grid-template-rows: repeat(2, 1fr); */
 	justify-items: center;
 	align-content: center;
 	gap: 20px 20px;
@@ -244,4 +244,11 @@
 
 .navbar-bottom ul li a:focus {
 	outline: none;
+}
+
+.rating {
+	color: var(--color-primary);
+	display: flex;
+	flex-direction: column;
+	align-items: center;
 }
