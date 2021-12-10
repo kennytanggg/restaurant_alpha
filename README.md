@@ -1,4 +1,5 @@
 # restaurant_alpha
+www.sushihouselic.com
 This is a side project for a restaurant site mocked up using a few of my favorite sushi restaurants in Jersey/NYC.
 
 Visitors should be able to find the restaurant, read reviews posted from the Zomato API, and add menu items to an order.
